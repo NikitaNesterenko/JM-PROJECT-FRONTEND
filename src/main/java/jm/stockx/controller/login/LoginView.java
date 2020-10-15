@@ -12,6 +12,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
 import jm.stockx.http.service.AuthRestHttpService;
 import org.apache.http.impl.client.HttpClients;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.Cookie;
 
@@ -21,7 +22,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private LoginForm login = new LoginForm();
     private final AuthRestHttpService auth;
-    public static final String COOKIE_TOKEN_NAME = "token";
+    @Value("${cookie.token.name}")
+    private String cookieTokenName;
 
     public LoginView(AuthRestHttpService auth) {
         this.auth = auth;
@@ -34,7 +36,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         login.addLoginListener(e -> {
             String token = auth.getToken(e.getUsername(), e.getPassword());
             if (token != null) {
-                VaadinService.getCurrentResponse().addCookie(new Cookie(COOKIE_TOKEN_NAME, token));
+                VaadinService.getCurrentResponse().addCookie(new Cookie(cookieTokenName, token));
                 getUI().get().getPage().setLocation("/");
             } else {
                 getUI().get().getPage().setLocation("/login");
