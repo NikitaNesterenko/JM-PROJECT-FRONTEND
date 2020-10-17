@@ -9,12 +9,16 @@ import javax.servlet.http.Cookie;
 
 @Service
 public class UtilService {
+
     @Value("${authorization.header}")
     private String authorizationHeader;
+
     @Value("${token.prefix}")
     private String prefixToken;
+
     @Value("${cookie.token.name}")
     private String cookieTokenName;
+
     private String token;
 
     private void setTokenFromCookie() {

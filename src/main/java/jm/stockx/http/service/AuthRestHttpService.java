@@ -13,11 +13,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthRestHttpService {
-    private CloseableHttpClient httpClient;
-    private ObjectMapper mapper;
     @Value("${basic.url}")
     private String basicUrl;
-    private static final String postfixUrl = "/auth/login";
+
+    private CloseableHttpClient httpClient;
+    private ObjectMapper mapper;
+    private final String postfixUrl = "/auth/login";
 
     public AuthRestHttpService() {
         this.httpClient = HttpClients.createDefault();
@@ -26,7 +27,6 @@ public class AuthRestHttpService {
 
     public String getToken(String username, String password) {
         try {
-            ObjectMapper mapper = new ObjectMapper();
             String jsonEntity = mapper.writeValueAsString(new UserLoginDto(username, password, true));
 
             HttpPost httpPost = new HttpPost(basicUrl + postfixUrl);

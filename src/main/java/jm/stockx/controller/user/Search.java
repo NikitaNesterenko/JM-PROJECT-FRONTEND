@@ -16,10 +16,14 @@ import java.util.List;
 public class Search extends VerticalLayout {
     @Autowired
     private SearchService searchService;
-    private final TextField searchField = new TextField();
-    private final VerticalLayout buttonLayout = new VerticalLayout();
+
+    private final TextField searchField;
+    private final VerticalLayout buttonLayout;
 
     public Search() {
+        searchField = new TextField();
+        buttonLayout = new VerticalLayout();
+
         configure();
         add(searchField);
 

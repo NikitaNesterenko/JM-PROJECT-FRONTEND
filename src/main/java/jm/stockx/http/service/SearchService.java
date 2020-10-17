@@ -14,11 +14,12 @@ import java.util.List;
 
 @Service
 public class SearchService {
-    private CloseableHttpClient httpClient;
-    private ObjectMapper mapper;
     @Value("${basic.url}")
     private String basicUrl;
-    private static final String postfixUrl = "/search?s=";
+
+    private CloseableHttpClient httpClient;
+    private ObjectMapper mapper;
+    private final String postfixUrl = "/search?s=";
 
     public SearchService() {
         this.httpClient = HttpClients.createDefault();
