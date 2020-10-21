@@ -40,12 +40,21 @@ public class RegistrationForm extends VerticalLayout {
     Button signUp = new Button("Sign Up");
 
     public RegistrationForm() {
+        googleLoginButton.addClassName("googleLoginButton");
+        facebookLoginButton.addClassName("facebookLoginButton");
+        appleLoginButton.addClassName("appleLoginButton");
+        twitterLoginButton.addClassName("twitterLoginButton");
         firstName.setPlaceholder("First Name");
         lastName.setPlaceholder("Last Name");
         email.setPlaceholder("Email Address");
         password.setPlaceholder("Password");
+        checkboxLayout1.addClassName("checkboxLayout1");
+        checkboxLayout2.addClassName("checkboxLayout2");
+        terms.addClassName("terms");
+        privacyPolicy.addClassName("privacyPolicy");
         signUp.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         signUp.addClickShortcut(Key.ENTER); // defines keyboard shortcut: enter to sign up
+        signUp.addClassName("signUp");
         addClassName("registration-form");
         add(googleLoginButton,
                 facebookLoginButton,
