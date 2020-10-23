@@ -19,14 +19,15 @@ import javax.servlet.http.Cookie;
 @Route("login")
 @PageTitle("Login")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
-
-    private LoginForm login = new LoginForm();
-    private final AuthRestHttpService auth;
     @Value("${cookie.token.name}")
     private String cookieTokenName;
 
+    private final LoginForm login;
+    private final AuthRestHttpService auth;
+
     public LoginView(AuthRestHttpService auth) {
         this.auth = auth;
+        login = new LoginForm();
         addClassName("login-view");
         setSizeFull();
         setJustifyContentMode(JustifyContentMode.CENTER);
