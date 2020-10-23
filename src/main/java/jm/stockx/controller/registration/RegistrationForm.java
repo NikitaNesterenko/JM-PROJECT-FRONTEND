@@ -3,7 +3,6 @@ package jm.stockx.controller.registration;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -45,14 +44,17 @@ public class RegistrationForm extends VerticalLayout {
         appleLoginButton.addClassName("appleLoginButton");
         twitterLoginButton.addClassName("twitterLoginButton");
         firstName.setPlaceholder("First Name");
+        firstName.addClassName("firstName");
         lastName.setPlaceholder("Last Name");
+        lastName.addClassName("lastName");
         email.setPlaceholder("Email Address");
+        email.addClassName("email");
         password.setPlaceholder("Password");
+        password.addClassName("password");
         checkboxLayout1.addClassName("checkboxLayout1");
         checkboxLayout2.addClassName("checkboxLayout2");
         terms.addClassName("terms");
         privacyPolicy.addClassName("privacyPolicy");
-        signUp.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         signUp.addClickShortcut(Key.ENTER); // defines keyboard shortcut: enter to sign up
         signUp.addClassName("signUp");
         addClassName("registration-form");
@@ -71,4 +73,3 @@ public class RegistrationForm extends VerticalLayout {
         );
     }
 }
-

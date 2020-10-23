@@ -41,15 +41,25 @@ a[highlight] {
     margin: 1em 0;
 }
 
+.registration-view {
+    background-color: lightgray;
+}
+
 .registration-form {
     background-color: white;
     border: 1px solid gray;
-    width: 300px;
+    border-radius: 3px;
+}
+
+.content {
+    width: 400px;
+    margin: 200px auto;
 }
 
 .toMainPage {
     margin: auto;
-    color: darkgreen;
+    opacity: 0;
+    font-size: 70px;
 }
 
 .backToMainLayout {
@@ -57,6 +67,12 @@ a[highlight] {
     height: 100px;
     background-color: white;
     border: 1px solid grey;
+    border-radius: 3px;
+    position: fixed;
+    margin: 0 10px;
+    background-image: url("https://stockx-assets.imgix.net/logo/stockx_homepage_logo_dark.svg?auto=compress,format");
+    background-repeat: no-repeat, repeat;
+    background-position: center;
 }
 
 .googleLoginButton,
@@ -67,9 +83,16 @@ a[highlight] {
     font-weight: bold;
     border: 2px solid black;
     border-radius: 3px;
-    width: 190px;
+    width: 290px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+.firstName,
+.lastName,
+.email,
+.password {
+    width: 290px;
 }
 
 .checkboxLayout1,
@@ -79,18 +102,16 @@ a[highlight] {
 
 .terms {
     margin-right: 5px;
+    color: black;
 }
 
 .privacyPolicy {
     margin-left: 5px;
+    color: black;
 }
 
 .signUp {
-    width: 190px;
+    width: 290px;
+    background-color: gray;
+    color: white;
 }
-
-.registration-view {
-    width:100%;
-    background-color: lightgray;
-}
-
