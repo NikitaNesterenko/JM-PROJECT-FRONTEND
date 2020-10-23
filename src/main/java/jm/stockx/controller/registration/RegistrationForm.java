@@ -21,6 +21,7 @@ public class RegistrationForm extends VerticalLayout {
     Anchor facebookLoginButton = new Anchor(facebookOAuth2, "Login with Facebook");
     Anchor appleLoginButton = new Anchor(appleOAuth2, "Login with Apple");
     Anchor twitterLoginButton = new Anchor(twitterOAuth2, "Login with Twitter");
+
     Text text = new Text("- or -");
 
     TextField firstName = new TextField();

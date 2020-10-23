@@ -69,7 +69,7 @@ a[highlight] {
     border: 1px solid grey;
     border-radius: 3px;
     position: fixed;
-    margin: 0 10px;
+    margin-left: 0;
     background-image: url("https://stockx-assets.imgix.net/logo/stockx_homepage_logo_dark.svg?auto=compress,format");
     background-repeat: no-repeat, repeat;
     background-position: center;

@@ -19,6 +19,7 @@ public class RegistrationView extends VerticalLayout {
     public RegistrationView() {
         addClassName("registration-view");
         setSizeUndefined();
+
         toMainPage.addClassName("toMainPage");
         backToMainLayout.addClassName("backToMainLayout");
         registrationForm = new RegistrationForm();
