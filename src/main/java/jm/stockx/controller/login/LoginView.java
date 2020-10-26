@@ -1,7 +1,7 @@
 package jm.stockx.controller.login;
 
 
-
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -10,8 +10,9 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
+import jm.stockx.http.service.AuthRestGoogleService;
 import jm.stockx.http.service.AuthRestHttpService;
-import org.apache.http.impl.client.HttpClients;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.Cookie;
@@ -22,12 +23,17 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     @Value("${cookie.token.name}")
     private String cookieTokenName;
 
+    private final AuthRestGoogleService googleService;
     private final LoginForm login;
     private final AuthRestHttpService auth;
+    private final Button googleButton;
 
-    public LoginView(AuthRestHttpService auth) {
+    public LoginView(AuthRestHttpService auth, AuthRestGoogleService googleService) {
+
         this.auth = auth;
+        this.googleService = googleService;
         login = new LoginForm();
+        googleButton = new Button("With google");
         addClassName("login-view");
         setSizeFull();
         setJustifyContentMode(JustifyContentMode.CENTER);
@@ -44,9 +50,14 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             }
         });
 
+        googleButton.addClickListener(e -> {
+            getUI().get().getPage().setLocation(googleService.getUrl());
+        });
+
         add(
                 new H1("Vaadin Login"),
-                login
+                login,
+                googleButton
         );
     }
 
