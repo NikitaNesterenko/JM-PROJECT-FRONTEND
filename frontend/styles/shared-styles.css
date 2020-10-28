@@ -60,11 +60,13 @@
 .terms {
   margin-right: 5px;
   color: black;
+  font-weight: bold;
 }
 
 .privacyPolicy {
   margin-left: 5px;
   color: black;
+  font-weight: bold;
 }
 
 .signUp {

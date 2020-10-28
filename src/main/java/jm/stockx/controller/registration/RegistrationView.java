@@ -34,5 +34,6 @@ public class RegistrationView extends VerticalLayout {
 
         add(backToMainLayout, content);
     }
+
 }
 

@@ -8,10 +8,15 @@ import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
-import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import jm.stockx.dto.UserRegistrationDto;
+import jm.stockx.http.service.UserRegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class RegistrationForm extends VerticalLayout {
+    @Autowired
+    private UserRegistrationService userRegistrationService;
+
     private static final String googleOAuth2 = "/oauth2/authorization/google";
     private static final String facebookOAuth2 = "/oauth2/authorization/facebook";
     private static final String appleOAuth2 = "/oauth2/authorization/apple";
@@ -27,7 +32,6 @@ public class RegistrationForm extends VerticalLayout {
     TextField firstName = new TextField();
     TextField lastName = new TextField();
     EmailField email = new EmailField();
-    PasswordField password = new PasswordField();
     Checkbox checkbox = new Checkbox();
     Text text1 = new Text("By signing up, you agree to the");
     Anchor terms = new Anchor("https://stockx.com/terms", "Terms of Service");
@@ -36,7 +40,14 @@ public class RegistrationForm extends VerticalLayout {
     HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
     HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
 
-    Button signUp = new Button("Sign Up");
+    String _firstName = firstName.getValue();
+    String _lastName = lastName.getValue();
+    String _email = email.getValue();
+
+    UserRegistrationDto userRegistrationDto = new UserRegistrationDto(_firstName, _lastName, _email);
+
+    Button signUp = new Button("Sign Up",
+            e -> userRegistrationService.registerUser(userRegistrationDto));
 
     public RegistrationForm() {
         googleLoginButton.addClassName("googleLoginButton");
@@ -49,8 +60,6 @@ public class RegistrationForm extends VerticalLayout {
         lastName.addClassName("lastName");
         email.setPlaceholder("Email Address");
         email.addClassName("email");
-        password.setPlaceholder("Password");
-        password.addClassName("password");
         checkboxLayout1.addClassName("checkboxLayout1");
         checkboxLayout2.addClassName("checkboxLayout2");
         terms.addClassName("terms");
@@ -66,7 +75,6 @@ public class RegistrationForm extends VerticalLayout {
                 firstName,
                 lastName,
                 email,
-                password,
                 checkboxLayout1,
                 checkboxLayout2,
                 signUp
