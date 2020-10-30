@@ -1,10 +1,8 @@
 package jm.stockx.http.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaadin.flow.component.notification.Notification;
 import jm.stockx.dto.UserRegistrationDto;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -18,20 +16,21 @@ import java.io.IOException;
 @Service
 public class UserRegistrationService {
 
-    @Value("${basic.url}")
-    static String basicUrl;
-    static String postfix = "/registration";
+    //@Value("${basic.url}")
+    //private  String basicUrl;
+    //@Value("${reg.path}")
+    //private  String regPath;
 
-    static CloseableHttpClient httpClient;
-    static ObjectMapper objMapper;
-    static CloseableHttpResponse response;
+    private CloseableHttpClient httpClient;
+    private ObjectMapper objMapper;
+    private CloseableHttpResponse response;
 
     public UserRegistrationService() {
         this.httpClient = HttpClients.createDefault();
         this.objMapper = new ObjectMapper();
     }
 
-    public static boolean registerUser(UserRegistrationDto userRegistrationDto)  {
+    public boolean registerUser(UserRegistrationDto userRegistrationDto)  {
 
         try {
             String jsonFromDto = objMapper.writeValueAsString(userRegistrationDto);

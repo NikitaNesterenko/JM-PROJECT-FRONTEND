@@ -11,13 +11,19 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import jm.stockx.dto.UserRegistrationDto;
 import jm.stockx.http.service.UserRegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 public class RegistrationForm extends VerticalLayout {
 
-    private static final String googleOAuth2 = "/oauth2/authorization/google";
-    private static final String facebookOAuth2 = "/oauth2/authorization/facebook";
-    private static final String appleOAuth2 = "/oauth2/authorization/apple";
-    private static final String twitterOAuth2 = "/oauth2/authorization/twitter";
+    //@Value("")
+    private String googleOAuth2 = "/oauth2/authorization/google";
+    //@Value("")
+    private String facebookOAuth2 = "/oauth2/authorization/facebook";
+    //@Value("")
+    private String appleOAuth2 = "/oauth2/authorization/apple";
+    //@Value("")
+    private String twitterOAuth2 = "/oauth2/authorization/twitter";
 
     Anchor googleLoginButton = new Anchor(googleOAuth2, "Login with Google");
     Anchor facebookLoginButton = new Anchor(facebookOAuth2, "Login with Facebook");
@@ -25,7 +31,6 @@ public class RegistrationForm extends VerticalLayout {
     Anchor twitterLoginButton = new Anchor(twitterOAuth2, "Login with Twitter");
 
     Text text = new Text("- or -");
-
     TextField firstName = new TextField();
     TextField lastName = new TextField();
     EmailField email = new EmailField();
@@ -36,7 +41,6 @@ public class RegistrationForm extends VerticalLayout {
     Anchor privacyPolicy = new Anchor("https://stockx.com/privacy", "Privacy Policy");
     HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
     HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
-
     Button signUp = new Button("Sign Up");
 
     public RegistrationForm() {
@@ -55,10 +59,12 @@ public class RegistrationForm extends VerticalLayout {
         terms.addClassName("terms");
         privacyPolicy.addClassName("privacyPolicy");
 
-        signUp.addClickShortcut(Key.ENTER); // defines keyboard shortcut: enter to sign up
+        signUp.addClickShortcut(Key.ENTER);
         signUp.addClassName("signUp");
 
-        signUp.addClickListener(event -> UserRegistrationService.registerUser(
+        UserRegistrationService userRegistrationService = new UserRegistrationService();
+
+        signUp.addClickListener(event -> userRegistrationService.registerUser(
                 new UserRegistrationDto(firstName.getValue(), lastName.getValue(), email.getValue())
         ));
 
