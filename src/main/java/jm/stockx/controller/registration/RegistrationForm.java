@@ -11,11 +11,8 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import jm.stockx.dto.UserRegistrationDto;
 import jm.stockx.http.service.UserRegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class RegistrationForm extends VerticalLayout {
-    @Autowired
-    private UserRegistrationService userRegistrationService;
 
     private static final String googleOAuth2 = "/oauth2/authorization/google";
     private static final String facebookOAuth2 = "/oauth2/authorization/facebook";
@@ -40,14 +37,7 @@ public class RegistrationForm extends VerticalLayout {
     HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
     HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
 
-    String _firstName = firstName.getValue();
-    String _lastName = lastName.getValue();
-    String _email = email.getValue();
-
-    UserRegistrationDto userRegistrationDto = new UserRegistrationDto(_firstName, _lastName, _email);
-
-    Button signUp = new Button("Sign Up",
-            e -> userRegistrationService.registerUser(userRegistrationDto));
+    Button signUp = new Button("Sign Up");
 
     public RegistrationForm() {
         googleLoginButton.addClassName("googleLoginButton");
@@ -64,8 +54,14 @@ public class RegistrationForm extends VerticalLayout {
         checkboxLayout2.addClassName("checkboxLayout2");
         terms.addClassName("terms");
         privacyPolicy.addClassName("privacyPolicy");
+
         signUp.addClickShortcut(Key.ENTER); // defines keyboard shortcut: enter to sign up
         signUp.addClassName("signUp");
+
+        signUp.addClickListener(event -> UserRegistrationService.registerUser(
+                new UserRegistrationDto(firstName.getValue(), lastName.getValue(), email.getValue())
+        ));
+
         addClassName("registration-form");
         add(googleLoginButton,
                 facebookLoginButton,

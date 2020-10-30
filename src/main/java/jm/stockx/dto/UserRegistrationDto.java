@@ -1,6 +1,5 @@
 package jm.stockx.dto;
 
-//import jm.stockx.entity.User;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -10,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @ToString
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 public class UserRegistrationDto {
 
     @NotBlank
@@ -21,10 +20,4 @@ public class UserRegistrationDto {
 
     @Email(message = "Адрес электронной почты должен быть корректным")
     private String email;
-
-    public UserRegistrationDto(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
 }
