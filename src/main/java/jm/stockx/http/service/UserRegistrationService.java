@@ -36,7 +36,7 @@ public class UserRegistrationService {
             String jsonFromDto = objMapper.writeValueAsString(userRegistrationDto);
 
             StringEntity entity = new StringEntity(jsonFromDto);
-                                                //  "http://localhost:8080/registration"
+
             HttpPost httpPost = new HttpPost(basicUrl + regPath);
 
             httpPost.setEntity(entity);
