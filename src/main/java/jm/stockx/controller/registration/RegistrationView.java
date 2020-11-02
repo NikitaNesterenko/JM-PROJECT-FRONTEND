@@ -12,8 +12,8 @@ import com.vaadin.flow.router.Route;
 @CssImport("./styles/shared-styles.css")
 public class RegistrationView extends VerticalLayout {
 
-    Anchor toMainPage = new Anchor("https://stockx.com", "Back To Main Page");
-    HorizontalLayout backToMainLayout = new HorizontalLayout(toMainPage);
+    private Anchor toMainPage = new Anchor("https://stockx.com", "Back To Main Page");
+    private HorizontalLayout backToMainLayout = new HorizontalLayout(toMainPage);
 
     private RegistrationForm registrationForm;
 

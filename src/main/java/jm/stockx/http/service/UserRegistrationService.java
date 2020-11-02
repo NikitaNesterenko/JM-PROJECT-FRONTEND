@@ -16,10 +16,10 @@ import java.io.IOException;
 @Service
 public class UserRegistrationService {
 
-    //@Value("${basic.url}")
-    //private  String basicUrl;
-    //@Value("${reg.path}")
-    //private  String regPath;
+    @Value("${basic.url}")
+    private  String basicUrl = "http://localhost:8080";
+    @Value("${reg.path}")
+    private  String regPath = "/registration";
 
     private CloseableHttpClient httpClient;
     private ObjectMapper objMapper;
@@ -36,8 +36,8 @@ public class UserRegistrationService {
             String jsonFromDto = objMapper.writeValueAsString(userRegistrationDto);
 
             StringEntity entity = new StringEntity(jsonFromDto);
-                                                // basicUrl + postfix
-            HttpPost httpPost = new HttpPost("http://localhost:8080/registration");
+                                                //  "http://localhost:8080/registration"
+            HttpPost httpPost = new HttpPost(basicUrl + regPath);
 
             httpPost.setEntity(entity);
             httpPost.setHeader("Accept", "application/json");
@@ -46,6 +46,7 @@ public class UserRegistrationService {
             response = httpClient.execute(httpPost);
 
             if (response.getStatusLine().getStatusCode() == 200) {
+                Notification.show("You have been successfully registered");
                 return true;
             }
         } catch (Exception e) {

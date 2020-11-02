@@ -11,37 +11,36 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import jm.stockx.dto.UserRegistrationDto;
 import jm.stockx.http.service.UserRegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 public class RegistrationForm extends VerticalLayout {
 
-    //@Value("")
+    @Value("${google.oauth2}")
     private String googleOAuth2 = "/oauth2/authorization/google";
-    //@Value("")
+    @Value("${facebook.oauth2}")
     private String facebookOAuth2 = "/oauth2/authorization/facebook";
-    //@Value("")
+    @Value("${apple.oauth2}")
     private String appleOAuth2 = "/oauth2/authorization/apple";
-    //@Value("")
+    @Value("${twitter.oauth2}")
     private String twitterOAuth2 = "/oauth2/authorization/twitter";
 
-    Anchor googleLoginButton = new Anchor(googleOAuth2, "Login with Google");
-    Anchor facebookLoginButton = new Anchor(facebookOAuth2, "Login with Facebook");
-    Anchor appleLoginButton = new Anchor(appleOAuth2, "Login with Apple");
-    Anchor twitterLoginButton = new Anchor(twitterOAuth2, "Login with Twitter");
+    private Anchor googleLoginButton = new Anchor(googleOAuth2, "Login with Google");
+    private Anchor facebookLoginButton = new Anchor(facebookOAuth2, "Login with Facebook");
+    private Anchor appleLoginButton = new Anchor(appleOAuth2, "Login with Apple");
+    private Anchor twitterLoginButton = new Anchor(twitterOAuth2, "Login with Twitter");
 
-    Text text = new Text("- or -");
-    TextField firstName = new TextField();
-    TextField lastName = new TextField();
-    EmailField email = new EmailField();
-    Checkbox checkbox = new Checkbox();
-    Text text1 = new Text("By signing up, you agree to the");
-    Anchor terms = new Anchor("https://stockx.com/terms", "Terms of Service");
-    Text text2 = new Text("and");
-    Anchor privacyPolicy = new Anchor("https://stockx.com/privacy", "Privacy Policy");
-    HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
-    HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
-    Button signUp = new Button("Sign Up");
+    private Text text = new Text("- or -");
+    private TextField firstName = new TextField();
+    private TextField lastName = new TextField();
+    private EmailField email = new EmailField();
+    private Checkbox checkbox = new Checkbox();
+    private Text text1 = new Text("By signing up, you agree to the");
+    private Anchor terms = new Anchor("https://stockx.com/terms", "Terms of Service");
+    private Text text2 = new Text("and");
+    private Anchor privacyPolicy = new Anchor("https://stockx.com/privacy", "Privacy Policy");
+    private HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
+    private HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
+    private Button signUp = new Button("Sign Up");
 
     public RegistrationForm() {
         googleLoginButton.addClassName("googleLoginButton");
