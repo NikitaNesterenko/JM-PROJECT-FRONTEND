@@ -21,11 +21,11 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_OCTET_STREAM_VA
 @Service
 public class FileStorageRestHttpService {
     private String requestUrl;
-    private CloseableHttpClient httpClient;
+    private final CloseableHttpClient httpClient;
 
-    public FileStorageRestHttpService(String requestMappingUrl) {
-        httpClient = HttpClients.createDefault();
+    public FileStorageRestHttpService(String requestMappingUrl, CloseableHttpClient httpClient) {
         requestUrl = requestMappingUrl;
+        this.httpClient = httpClient;
     }
 
     public FileStorageRestHttpService() {

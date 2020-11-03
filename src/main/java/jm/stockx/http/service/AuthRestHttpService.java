@@ -7,7 +7,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,12 @@ public class AuthRestHttpService {
     @Value("${basic.url}")
     private String basicUrl;
 
-    private CloseableHttpClient httpClient;
+    private final CloseableHttpClient httpClient;
     private ObjectMapper mapper;
     private final String postfixUrl = "/auth/login";
 
-    public AuthRestHttpService() {
-        this.httpClient = HttpClients.createDefault();
+    public AuthRestHttpService(CloseableHttpClient httpClient) {
+        this.httpClient = httpClient;
         this.mapper = new ObjectMapper();
     }
 

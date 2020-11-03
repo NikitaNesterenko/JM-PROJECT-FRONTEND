@@ -2,7 +2,10 @@ package jm.stockx.http.service;
 
 import com.vaadin.flow.server.VaadinService;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -35,5 +38,14 @@ public class UtilService {
         if (token != null) {
             t.setHeader(authorizationHeader, prefixToken + token);
         }
+    }
+
+    /**
+     * This Bean is used to provide common HttpClient for a project
+     * @return CloseableHttpClient
+     */
+    @Bean
+    public CloseableHttpClient getHttpClient(){
+        return HttpClients.createDefault();
     }
 }

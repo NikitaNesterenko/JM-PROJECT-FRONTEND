@@ -5,7 +5,6 @@ import jm.stockx.dto.ItemSearchDto;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +16,12 @@ public class SearchService {
     @Value("${basic.url}")
     private String basicUrl;
 
-    private CloseableHttpClient httpClient;
+    private final  CloseableHttpClient httpClient;
     private ObjectMapper mapper;
     private final String postfixUrl = "/search?s=";
 
-    public SearchService() {
-        this.httpClient = HttpClients.createDefault();
+    public SearchService(CloseableHttpClient httpClient) {
+        this.httpClient = httpClient;
         this.mapper = new ObjectMapper();
     }
 
