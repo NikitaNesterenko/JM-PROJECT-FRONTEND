@@ -24,10 +24,9 @@ public class AuthRestGoogleService {
     }
 
     public String getUrl() {
-        try {
-            HttpGet httpGet = new HttpGet(basicUrl + postfixUrl);
-            CloseableHttpResponse execute = httpClient.execute(httpGet);
-
+        HttpGet httpGet = new HttpGet(basicUrl + postfixUrl);
+        try(CloseableHttpResponse execute = httpClient.execute(httpGet);)
+        {
             return EntityUtils.toString(execute.getEntity());
         } catch (Exception e) {
             System.out.println(e.getMessage());
