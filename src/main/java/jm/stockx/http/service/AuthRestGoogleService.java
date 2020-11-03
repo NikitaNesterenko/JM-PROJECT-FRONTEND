@@ -1,37 +1,26 @@
 package jm.stockx.http.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import jm.stockx.feign.AuthRestGoogleServiceClient;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 
 @Service
 public class AuthRestGoogleService {
-    @Value("${basic.url}")
-    private String basicUrl;
 
-    private CloseableHttpClient httpClient;
-    private ObjectMapper mapper;
-    private final String postfixUrl = "/auth/url/google";
+    private final AuthRestGoogleServiceClient authRestGoogleServiceClient;
+    private final ObjectMapper mapper;
 
-
-    public AuthRestGoogleService() {
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
+    @Autowired
+    public AuthRestGoogleService(AuthRestGoogleServiceClient authRestGoogleServiceClient, ObjectMapper mapper) {
+        this.authRestGoogleServiceClient = authRestGoogleServiceClient;
+        this.mapper = mapper;
     }
 
     public String getUrl() {
         try {
-            HttpGet httpGet = new HttpGet(basicUrl + postfixUrl);
-            CloseableHttpResponse execute = httpClient.execute(httpGet);
-
-            return EntityUtils.toString(execute.getEntity());
+            return EntityUtils.toString(authRestGoogleServiceClient.getUrl());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
