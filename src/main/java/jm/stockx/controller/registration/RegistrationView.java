@@ -26,14 +26,12 @@ public class RegistrationView extends VerticalLayout {
         backToMainLayout.setMargin(false);
 
         registrationForm = new RegistrationForm();
-        registrationForm.setDefaultHorizontalComponentAlignment(
-                FlexComponent.Alignment.CENTER);
+        registrationForm.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
 
         Div content = new Div(registrationForm);
         content.addClassName("content");
 
         add(backToMainLayout, content);
     }
-
 }
 
