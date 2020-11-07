@@ -39,13 +39,4 @@ public class UtilService {
             t.setHeader(authorizationHeader, prefixToken + token);
         }
     }
-
-    /**
-     * This Bean is used to provide common HttpClient for a project
-     * @return CloseableHttpClient
-     */
-    @Bean
-    public CloseableHttpClient getHttpClient(){
-        return HttpClients.createDefault();
-    }
 }
