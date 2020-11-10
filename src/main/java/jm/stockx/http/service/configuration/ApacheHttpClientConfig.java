@@ -78,29 +78,4 @@ public class ApacheHttpClientConfig {
 
         return poolingConnectionManager;
     }
-
-    @Bean
-    public Runnable idleConnectionMonitor(PoolingHttpClientConnectionManager pool) {
-        return new Runnable() {
-            @Override
-            @Scheduled(fixedDelay = 20000)
-            public void run() {
-                // only if connection pool is initialised
-                if (pool != null) {
-                    pool.closeExpiredConnections();
-                    pool.closeIdleConnections(IDLE_CONNECTION_WAIT_TIME, TimeUnit.MILLISECONDS);
-
-                    log.info("Idle connection monitor: Closing expired and idle connections");
-                }
-            }
-        };
-    }
-
-    @Bean
-    public TaskScheduler taskScheduler() {
-        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
-        scheduler.setThreadNamePrefix("idleMonitor");
-        scheduler.setPoolSize(5);
-        return scheduler;
-    }
 }
