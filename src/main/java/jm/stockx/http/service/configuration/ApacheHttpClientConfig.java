@@ -15,13 +15,9 @@ import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
-import java.util.concurrent.TimeUnit;
-import static  jm.stockx.http.service.configuration.HttpClientConfigConstants.*;
+import static jm.stockx.http.service.configuration.HttpClientConfigConstants.*;
 
 @Configuration
 @EnableScheduling
@@ -68,9 +64,6 @@ public class ApacheHttpClientConfig {
 
         // set total amount of connections across all HTTP routes
         poolingConnectionManager.setMaxTotal(MAX_TOTAL_CONNECTIONS);
-
-        // set maximum amount of connections for each http route in pool
-        poolingConnectionManager.setDefaultMaxPerRoute(MAX_ROUTE_CONNECTIONS);
 
         // increase the amounts of connections if host is localhost
         HttpHost localhost = new HttpHost("http://localhost", 8080);

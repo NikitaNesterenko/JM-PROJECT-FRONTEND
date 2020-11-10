@@ -3,7 +3,6 @@ package jm.stockx.http.service.configuration;
 public interface HttpClientConfigConstants {
 
     // Connection pool
-    int MAX_ROUTE_CONNECTIONS     = 40;
     int MAX_TOTAL_CONNECTIONS     = 40;
     int MAX_LOCALHOST_CONNECTIONS = 80;
 
