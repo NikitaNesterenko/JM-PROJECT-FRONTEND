@@ -7,7 +7,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +15,10 @@ import java.io.IOException;
 @Service
 public class UserRestHttpService {
     private String requestUrl;
-    private CloseableHttpClient httpClient;
+    private final  CloseableHttpClient httpClient;
 
-    public UserRestHttpService() {
-        httpClient = HttpClients.createDefault();
+    public UserRestHttpService(CloseableHttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 
     public UserDto getLoggedInUser(String url) {

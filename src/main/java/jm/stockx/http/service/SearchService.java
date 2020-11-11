@@ -3,9 +3,9 @@ package jm.stockx.http.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.dto.ItemSearchDto;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,25 +17,22 @@ public class SearchService {
     @Value("${basic.url}")
     private String basicUrl;
 
-    private CloseableHttpClient httpClient;
+    private final  CloseableHttpClient httpClient;
     private ObjectMapper mapper;
     private final String postfixUrl = "/search?s=";
 
-    public SearchService() {
-        this.httpClient = HttpClients.createDefault();
+    public SearchService(CloseableHttpClient httpClient) {
+        this.httpClient = httpClient;
         this.mapper = new ObjectMapper();
     }
 
     public List<ItemSearchDto> getItemSearchDtoBySearch(String search) {
         List<ItemSearchDto> searchItems = Collections.emptyList();
-        try {
-            HttpGet httpGet = new HttpGet(basicUrl + postfixUrl + search);
-            HttpResponse execute = httpClient.execute(httpGet);
-
+        HttpGet httpGet = new HttpGet(basicUrl + postfixUrl + search);
+        try(CloseableHttpResponse execute = httpClient.execute(httpGet);) {
             searchItems = mapper.readValue(execute.getEntity().getContent(), mapper
                     .getTypeFactory()
                     .constructCollectionType(List.class, ItemSearchDto.class));
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
