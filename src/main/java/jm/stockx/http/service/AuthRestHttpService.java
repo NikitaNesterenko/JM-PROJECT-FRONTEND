@@ -3,6 +3,7 @@ package jm.stockx.http.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.dto.UserLoginDto;
 import jm.stockx.dto.UserTokenDto;
+import lombok.Data;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -12,11 +13,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
+@Data
 @Service
 public class AuthRestHttpService {
     @Value("${basic.url}")
     private String basicUrl;
+    private String role;
 
     private final CloseableHttpClient httpClient;
     private ObjectMapper mapper;
@@ -39,6 +41,7 @@ public class AuthRestHttpService {
             response = httpClient.execute(httpPost);
 
             UserTokenDto userTokenDto = mapper.readValue(response.getEntity().getContent(), UserTokenDto.class);
+            this.role = userTokenDto.getRole();
             return userTokenDto.getToken();
 
         } catch (Exception e) {

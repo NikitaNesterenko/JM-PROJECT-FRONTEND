@@ -39,12 +39,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setJustifyContentMode(JustifyContentMode.CENTER);
         setAlignItems(Alignment.CENTER);
 
-
         login.addLoginListener(e -> {
             String token = auth.getToken(e.getUsername(), e.getPassword());
             if (token != null) {
                 VaadinService.getCurrentResponse().addCookie(new Cookie(cookieTokenName, token));
-                getUI().get().getPage().setLocation("/");
+                if(auth.getRole().equals("ROLE_ADMIN")){
+                    getUI().get().getPage().setLocation("admin");
+                }else {
+                    getUI().get().getPage().setLocation("/");
+                }
             } else {
                 getUI().get().getPage().setLocation("/login");
             }
