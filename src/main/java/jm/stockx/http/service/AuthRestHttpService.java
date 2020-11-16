@@ -16,10 +16,14 @@ public class AuthRestHttpService {
     }
 
     public String getToken(String username, String password) {
+
+        UserLoginDto userLoginDto = new UserLoginDto(username, password, true);
+
         try {
             return authRestHttpServiceClient.getToken("application/json",
                     "application/json",
-                    new UserLoginDto(username, password, true));
+                    "Bearer_" + null,
+                    userLoginDto);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

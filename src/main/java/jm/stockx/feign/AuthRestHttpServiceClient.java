@@ -11,5 +11,6 @@ public interface AuthRestHttpServiceClient {
     @PostMapping(value = "/auth/login")
     String getToken(@RequestHeader("Accept") String accept,
                     @RequestHeader("Content-type") String contentType,
+                    @RequestHeader("Authorization") String bearerToken,
                     UserLoginDto userLoginDto);
 }
