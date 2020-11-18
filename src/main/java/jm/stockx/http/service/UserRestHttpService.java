@@ -15,7 +15,7 @@ import java.io.IOException;
 @Service
 public class UserRestHttpService {
     private String requestUrl;
-    private final  CloseableHttpClient httpClient;
+    private final CloseableHttpClient httpClient;
 
     public UserRestHttpService(CloseableHttpClient httpClient) {
         this.httpClient = httpClient;
@@ -28,7 +28,7 @@ public class UserRestHttpService {
             responseJson = EntityUtils.toString(httpClient.execute(request).getEntity());
             return new ObjectMapper().readValue(responseJson, UserDto.class);
         } catch (IOException e) {
-            throw new UserRestServiceException("Unauthorized user",e);
+            throw new UserRestServiceException("Unauthorized user", e);
         }
     }
 
@@ -36,7 +36,7 @@ public class UserRestHttpService {
         try {
             return httpClient.execute(new HttpGet(requestUrl + url + email));
         } catch (IOException e) {
-            throw new UserRestServiceException("Invalid email",e);
+            throw new UserRestServiceException("Invalid email", e);
         }
     }
 
@@ -44,7 +44,7 @@ public class UserRestHttpService {
         try {
             return httpClient.execute(new HttpGet(requestUrl + url + code));
         } catch (IOException e) {
-            throw new UserRestServiceException("Invalid token",e);
+            throw new UserRestServiceException("Invalid token", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class UserRestHttpService {
         try {
             return httpClient.execute(new HttpPost(requestUrl + url));
         } catch (IOException e) {
-            throw new UserRestServiceException("Password recovery error",e);
+            throw new UserRestServiceException("Password recovery error", e);
         }
     }
 

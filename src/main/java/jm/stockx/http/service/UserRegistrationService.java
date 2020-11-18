@@ -17,9 +17,9 @@ import java.io.IOException;
 public class UserRegistrationService {
 
     @Value("${basic.url}")
-    private  String basicUrl = "http://localhost:8080";
+    private String basicUrl = "http://localhost:8080";
     @Value("${reg.path}")
-    private  String regPath = "/registration";
+    private String regPath = "/registration";
 
     private CloseableHttpClient httpClient;
     private ObjectMapper objMapper;
@@ -30,13 +30,13 @@ public class UserRegistrationService {
         this.objMapper = new ObjectMapper();
     }
 
-    public boolean registerUser(UserRegistrationDto userRegistrationDto)  {
+    public boolean registerUser(UserRegistrationDto userRegistrationDto) {
 
         try {
             String jsonFromDto = objMapper.writeValueAsString(userRegistrationDto);
 
             StringEntity entity = new StringEntity(jsonFromDto);
-                                                //  "http://localhost:8080/registration"
+            //  "http://localhost:8080/registration"
             HttpPost httpPost = new HttpPost(basicUrl + regPath);
 
             httpPost.setEntity(entity);
