@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(url = "http://localhost:8080")
+@FeignClient
 public interface UserRestHttpServiceClient {
 
-    @GetMapping("/{requestUrl}/{url}")
+    @GetMapping("{requestUrl}{url}")
     UserDto getLoggedInUser(@PathVariable("requestUrl") String requestUrl,
                             @PathVariable("url") String url);
 
-    @GetMapping("/{requestUrl}/{url}/{email}")
+    @GetMapping("{requestUrl}{url}{email}")
     HttpResponse sendRecoveryLinkToEmail(@PathVariable("requestUrl") String requestUrl,
                                          @PathVariable("url") String url,
                                          @PathVariable("email") String email);
 
-    @GetMapping("/{requestUrl}/{url}/{code}")
+    @GetMapping("{requestUrl}{url}{code}")
     HttpResponse activateAccountByToken(@PathVariable("requestUrl") String requestUrl,
                                         @PathVariable("url") String url,
-                                        @PathVariable("code") String code);
+                                        @PathVariable("code") int code);
 
-    @PostMapping("/{requestUrl}/{url}")
+    @PostMapping("{requestUrl}{url}")
     HttpResponse passwordRecovery(@PathVariable("requestUrl") String requestUrl,
                                   @PathVariable("url") String url);
 }

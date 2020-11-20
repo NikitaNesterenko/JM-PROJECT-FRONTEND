@@ -2,12 +2,12 @@ package jm.stockx.http.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.dto.UserDto;
+import jm.stockx.feign.UserRestHttpServiceClient;
 import jm.stockx.http.service.exceptions.UserRestServiceException;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,17 +15,17 @@ import java.io.IOException;
 @Service
 public class UserRestHttpService {
     private String requestUrl;
-    private final CloseableHttpClient httpClient;
+    private final UserRestHttpServiceClient client;
 
-    public UserRestHttpService(CloseableHttpClient httpClient) {
-        this.httpClient = httpClient;
+    @Autowired
+    public UserRestHttpService(UserRestHttpServiceClient client) {
+        this.client = client;
     }
 
     public UserDto getLoggedInUser(String url) {
-        HttpGet request = new HttpGet(requestUrl + url);
         String responseJson = null;
         try {
-            responseJson = EntityUtils.toString(httpClient.execute(request).getEntity());
+            responseJson = EntityUtils.toString((HttpEntity) client.getLoggedInUser(requestUrl,url));
             return new ObjectMapper().readValue(responseJson, UserDto.class);
         } catch (IOException e) {
             throw new UserRestServiceException("Unauthorized user", e);
@@ -34,24 +34,24 @@ public class UserRestHttpService {
 
     public HttpResponse sendRecoveryLinkToEmail(String url, String email) {
         try {
-            return httpClient.execute(new HttpGet(requestUrl + url + email));
-        } catch (IOException e) {
+            return client.sendRecoveryLinkToEmail(requestUrl,url,email);
+        } catch (Exception e) {
             throw new UserRestServiceException("Invalid email", e);
         }
     }
 
     public HttpResponse activateAccountByToken(String url, int code) {
         try {
-            return httpClient.execute(new HttpGet(requestUrl + url + code));
-        } catch (IOException e) {
+            return client.activateAccountByToken(requestUrl, url,code);
+        } catch (Exception e) {
             throw new UserRestServiceException("Invalid token", e);
         }
     }
 
     public HttpResponse passwordRecovery(String url) {
         try {
-            return httpClient.execute(new HttpPost(requestUrl + url));
-        } catch (IOException e) {
+            return client.passwordRecovery(requestUrl, url);
+        } catch (Exception e) {
             throw new UserRestServiceException("Password recovery error", e);
         }
     }
