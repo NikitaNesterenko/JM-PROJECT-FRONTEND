@@ -25,7 +25,7 @@ public class UserRestHttpService {
     public UserDto getLoggedInUser(String url) {
         String responseJson = null;
         try {
-            responseJson = EntityUtils.toString((HttpEntity) client.getLoggedInUser(requestUrl,url));
+            responseJson = EntityUtils.toString((HttpEntity) client.getLoggedInUser(requestUrl, url));
             return new ObjectMapper().readValue(responseJson, UserDto.class);
         } catch (IOException e) {
             throw new UserRestServiceException("Unauthorized user", e);
@@ -34,7 +34,7 @@ public class UserRestHttpService {
 
     public HttpResponse sendRecoveryLinkToEmail(String url, String email) {
         try {
-            return client.sendRecoveryLinkToEmail(requestUrl,url,email);
+            return client.sendRecoveryLinkToEmail(requestUrl, url, email);
         } catch (Exception e) {
             throw new UserRestServiceException("Invalid email", e);
         }
@@ -42,7 +42,7 @@ public class UserRestHttpService {
 
     public HttpResponse activateAccountByToken(String url, int code) {
         try {
-            return client.activateAccountByToken(requestUrl, url,code);
+            return client.activateAccountByToken(requestUrl, url, code);
         } catch (Exception e) {
             throw new UserRestServiceException("Invalid token", e);
         }

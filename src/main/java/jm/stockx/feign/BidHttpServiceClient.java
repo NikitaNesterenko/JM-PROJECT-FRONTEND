@@ -11,7 +11,7 @@ public interface BidHttpServiceClient {
 
     @PostMapping(value = "/api/bid")
     HttpEntity sendBid(@RequestHeader("Accept") String accept,
-                 @RequestHeader("Content-type") String contentType,
-                 @RequestHeader("Authorization") String bearerToken,
-                 BidPostDto bidPostDto);
+                       @RequestHeader("Content-type") String contentType,
+                       @RequestHeader("Authorization") String bearerToken,
+                       BidPostDto bidPostDto);
 }

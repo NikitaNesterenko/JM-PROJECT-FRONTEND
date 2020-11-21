@@ -2,10 +2,8 @@ package jm.stockx.http.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.dto.ItemSearchDto;
+import jm.stockx.feign.SearchServiceClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -13,22 +11,18 @@ import java.util.List;
 
 @Service
 public class SearchService {
-    @Value("${basic.url}")
-    private String basicUrl;
 
-    private final CloseableHttpClient httpClient;
+    private final SearchServiceClient client;
     private final ObjectMapper mapper;
-    private final String postfixUrl = "/search?s=";
 
-    public SearchService(CloseableHttpClient httpClient) {
-        this.httpClient = httpClient;
+    public SearchService(SearchServiceClient client) {
+        this.client = client;
         this.mapper = new ObjectMapper();
     }
 
     public List<ItemSearchDto> getItemSearchDtoBySearch(String search) {
         List<ItemSearchDto> searchItems = Collections.emptyList();
-        HttpGet httpGet = new HttpGet(basicUrl + postfixUrl + search);
-        try (CloseableHttpResponse execute = httpClient.execute(httpGet)) {
+        try (CloseableHttpResponse execute = client.getItemSearchDtoBySearch(search)) {
             searchItems = mapper.readValue(execute.getEntity().getContent(), mapper
                     .getTypeFactory()
                     .constructCollectionType(List.class, ItemSearchDto.class));
