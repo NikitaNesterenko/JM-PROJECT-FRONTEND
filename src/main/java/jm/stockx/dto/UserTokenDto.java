@@ -13,5 +13,5 @@ public class UserTokenDto {
     private String firstName;
     private String lastName;
     private String token;
-
+    private String role;
 }
