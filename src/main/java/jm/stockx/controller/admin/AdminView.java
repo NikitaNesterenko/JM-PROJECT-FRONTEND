@@ -5,4 +5,6 @@ import com.vaadin.flow.router.Route;
 
 @Route("admin")
 public class AdminView extends VerticalLayout {
+
+
 }
