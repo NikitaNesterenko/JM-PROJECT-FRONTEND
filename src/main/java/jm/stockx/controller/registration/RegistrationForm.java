@@ -33,6 +33,7 @@ public class RegistrationForm extends VerticalLayout {
     private TextField firstName = new TextField();
     private TextField lastName = new TextField();
     private EmailField email = new EmailField();
+
     private Checkbox checkbox = new Checkbox();
     private Text text1 = new Text("By signing up, you agree to the");
     private Anchor terms = new Anchor("https://stockx.com/terms", "Terms of Service");
@@ -47,12 +48,14 @@ public class RegistrationForm extends VerticalLayout {
         facebookLoginButton.addClassName("facebookLoginButton");
         appleLoginButton.addClassName("appleLoginButton");
         twitterLoginButton.addClassName("twitterLoginButton");
+
         firstName.setPlaceholder("First Name");
         firstName.addClassName("firstName");
         lastName.setPlaceholder("Last Name");
         lastName.addClassName("lastName");
         email.setPlaceholder("Email Address");
         email.addClassName("email");
+
         checkboxLayout1.addClassName("checkboxLayout1");
         checkboxLayout2.addClassName("checkboxLayout2");
         terms.addClassName("terms");
