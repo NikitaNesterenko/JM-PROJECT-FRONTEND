@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient
+@FeignClient(name = "userrest")
 public interface UserRestHttpServiceClient {
 
-    @GetMapping("{requestUrl}{url}")
+    @GetMapping(value = "{requestUrl}{url}",  consumes = "application/json")
     UserDto getLoggedInUser(@PathVariable("requestUrl") String requestUrl,
                             @PathVariable("url") String url);
 
-    @GetMapping("{requestUrl}{url}{email}")
-    HttpResponse sendRecoveryLinkToEmail(@PathVariable("requestUrl") String requestUrl,
+    @GetMapping(value = "{requestUrl}{url}{email}",  consumes = "application/json")
+    String sendRecoveryLinkToEmail(@PathVariable("requestUrl") String requestUrl,
                                          @PathVariable("url") String url,
                                          @PathVariable("email") String email);
 
-    @GetMapping("{requestUrl}{url}{code}")
+    @GetMapping(value = "{requestUrl}{url}{code}",  consumes = "application/json")
     HttpResponse activateAccountByToken(@PathVariable("requestUrl") String requestUrl,
                                         @PathVariable("url") String url,
                                         @PathVariable("code") int code);
 
-    @PostMapping("{requestUrl}{url}")
-    HttpResponse passwordRecovery(@PathVariable("requestUrl") String requestUrl,
+    @PostMapping(value = "{requestUrl}{url}",  consumes = "application/json")
+    String passwordRecovery(@PathVariable("requestUrl") String requestUrl,
                                   @PathVariable("url") String url);
 }

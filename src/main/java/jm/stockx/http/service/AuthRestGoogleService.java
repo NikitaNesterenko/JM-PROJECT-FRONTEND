@@ -20,7 +20,6 @@ public class AuthRestGoogleService {
 
     public String getUrl() {
         try {
-//            return EntityUtils.toString(authRestGoogleServiceClient.getUrl());
             return authRestGoogleServiceClient.getUrl();
         } catch (Exception e) {
             System.out.println(e.getMessage());

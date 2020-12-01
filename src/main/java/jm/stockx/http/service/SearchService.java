@@ -3,7 +3,6 @@ package jm.stockx.http.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.dto.ItemSearchDto;
 import jm.stockx.feign.SearchServiceClient;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -20,12 +19,15 @@ public class SearchService {
         this.mapper = new ObjectMapper();
     }
 
+
+
     public List<ItemSearchDto> getItemSearchDtoBySearch(String search) {
         List<ItemSearchDto> searchItems = Collections.emptyList();
-        try (CloseableHttpResponse execute = client.getItemSearchDtoBySearch(search)) {
-            searchItems = mapper.readValue(execute.getEntity().getContent(), mapper
-                    .getTypeFactory()
-                    .constructCollectionType(List.class, ItemSearchDto.class));
+
+        try{
+
+             searchItems = client.getItemSearchDtoBySearch(search);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

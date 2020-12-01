@@ -32,7 +32,7 @@ public class UserRestHttpService {
         }
     }
 
-    public HttpResponse sendRecoveryLinkToEmail(String url, String email) {
+    public String sendRecoveryLinkToEmail(String url, String email) {
         try {
             return client.sendRecoveryLinkToEmail(requestUrl, url, email);
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class UserRestHttpService {
         }
     }
 
-    public HttpResponse passwordRecovery(String url) {
+    public String passwordRecovery(String url) {
         try {
             return client.passwordRecovery(requestUrl, url);
         } catch (Exception e) {
