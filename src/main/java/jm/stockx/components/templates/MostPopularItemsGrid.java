@@ -2,6 +2,7 @@ package jm.stockx.components.templates;
 
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.contextmenu.SubMenu;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -25,16 +26,26 @@ public class MostPopularItemsGrid extends Div {
         add(bodyGrid);
     }
 
-    private void initGrid() {
-    }
-
     private void configureHeadGrid() {
         headGrid.setMargin(true);
         headGrid.setPadding(true);
-        headGrid.setAlignItems(FlexComponent.Alignment.END);
-
+        headGrid.getStyle().set("height", "60px");
+        headGrid.setAlignItems(FlexComponent.Alignment.START);
         configureGridName();
         headGrid.add(gridName);
+
+        configurePopupText();
+        Dialog popupQuestion = new Dialog();
+        popupQuestion.add(popupText);
+        popupQuestion.setModal(false);
+        popupQuestion.setDraggable(true);
+        popupQuestion.setResizable(true);
+        popupQuestion.setCloseOnOutsideClick(true);
+        Icon addIcon = new Icon(VaadinIcon.QUESTION_CIRCLE);
+        addIcon.setSize("18px");
+        addIcon.getStyle().set("margin-right", "auto");
+        addIcon.addClickListener(e -> popupQuestion.open());
+        headGrid.add(addIcon);
 
         configureLinkName();
         Anchor linkSeeAll = new Anchor("#");
@@ -44,7 +55,9 @@ public class MostPopularItemsGrid extends Div {
     }
 
     private void configureBodyGrid(List<ProductTile> popularItems) {
-
+        for (ProductTile productTile : popularItems) {
+            bodyGrid.add(productTile);
+        }
     }
     private void configureGridName() {
         gridName.getStyle().set("font-size", "18pt");
