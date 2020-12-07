@@ -35,12 +35,14 @@ public class MostPopularItemsGrid extends Div {
         headGrid.add(gridName);
 
         configurePopupText();
+
         Dialog popupQuestion = new Dialog();
         popupQuestion.add(popupText);
         popupQuestion.setModal(false);
         popupQuestion.setDraggable(true);
         popupQuestion.setResizable(true);
         popupQuestion.setCloseOnOutsideClick(true);
+
         Icon addIcon = new Icon(VaadinIcon.QUESTION_CIRCLE);
         addIcon.setSize("18px");
         addIcon.getStyle().set("margin-right", "auto");
