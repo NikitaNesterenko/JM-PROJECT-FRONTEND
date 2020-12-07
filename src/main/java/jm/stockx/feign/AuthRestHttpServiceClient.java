@@ -5,11 +5,11 @@ import jm.stockx.dto.UserTokenDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "AuthenticationRestController", url = "http://localhost:8080")
+@FeignClient(name = "Aut", url = "http://localhost:8080")
 public interface AuthRestHttpServiceClient {
 
     @PostMapping(value = "/auth/login",  consumes = "application/json")
     UserTokenDto getToken(@RequestBody UserLoginDto userLoginDto);
+
 }

@@ -7,6 +7,8 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import jm.stockx.http.service.UserRegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("registration")
 @CssImport("./styles/shared-styles.css")
@@ -17,7 +19,8 @@ public class RegistrationView extends VerticalLayout {
 
     private RegistrationForm registrationForm;
 
-    public RegistrationView() {
+    @Autowired
+    public RegistrationView(UserRegistrationService userRegistrationService) {
         addClassName("registration-view");
         setSizeUndefined();
 
@@ -25,7 +28,7 @@ public class RegistrationView extends VerticalLayout {
         backToMainLayout.addClassName("backToMainLayout");
         backToMainLayout.setMargin(false);
 
-        registrationForm = new RegistrationForm();
+        registrationForm = new RegistrationForm(userRegistrationService);
         registrationForm.setDefaultHorizontalComponentAlignment(
                 FlexComponent.Alignment.CENTER);
 

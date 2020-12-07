@@ -6,11 +6,12 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(name = "registration", url = "http://localhost:8080")
+@FeignClient(name = "Reg", url = "http://localhost:8080")
 public interface UserRegistrationServiceClient {
 
-    @PostMapping(value = "/registration",  consumes = "application/json")
-    String registerUser(@RequestBody UserRegistrationDto userRegistrationDto);
+    @PostMapping(value = "/api/registration",  consumes = "application/json")
+    Response registrationNewUser(@RequestBody UserRegistrationDto userRegistrationDto);
 
 }

@@ -20,4 +20,5 @@ public class UserRegistrationDto {
 
     @Email(message = "Адрес электронной почты должен быть корректным")
     private String email;
+
 }
