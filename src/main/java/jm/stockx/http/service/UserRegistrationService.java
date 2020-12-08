@@ -1,10 +1,10 @@
 package jm.stockx.http.service;
 
 import com.vaadin.flow.component.notification.Notification;
-import jm.stockx.dto.Response;
 import jm.stockx.dto.UserRegistrationDto;
 import jm.stockx.feign.UserRegistrationServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserRegistrationService {
 
     private UserRegistrationServiceClient client;
-    private Response response;
+    private ResponseEntity<?> response;
 
     @Autowired
     public UserRegistrationService(UserRegistrationServiceClient client) {
@@ -20,10 +20,9 @@ public class UserRegistrationService {
     }
 
     public boolean registerUser(UserRegistrationDto userRegistrationDto) {
-            System.out.println(userRegistrationDto);
         try {
             response = client.registrationNewUser(userRegistrationDto);
-            if (response.getStatus().toString().equals("200")) {
+            if (response.getStatusCodeValue() == 200){
                 Notification.show("You have been successfully registered");
                 return true;
             }

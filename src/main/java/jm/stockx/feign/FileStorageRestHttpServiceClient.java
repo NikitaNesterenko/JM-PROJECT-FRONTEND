@@ -14,12 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 @FeignClient(name = "file", url = "http://localhost:8080")
 public interface FileStorageRestHttpServiceClient {
 
-    @PostMapping(value = "/item/img/upload/{id}", consumes = "multipart/form-data")
+    @PostMapping(value = "/api/item/img/upload/{id}", consumes = "multipart/form-data")
     String uploadItemPicture(@PathVariable("id") Long id,
                              @RequestPart(value = "file") MultipartFile file);
 
 
-    @GetMapping(value = "/item/img/download/{filename}", consumes = "multipart/form-data")
+    @GetMapping(value = "/api/item/img/download/{filename}", consumes = "multipart/form-data")
     Resource downloadItemPicture(@PathVariable("filename") String filename);
 
 }
