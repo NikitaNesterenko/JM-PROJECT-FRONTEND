@@ -14,6 +14,7 @@ import java.util.List;
 
 @Route("search")
 public class Search extends VerticalLayout {
+
     @Autowired
     private SearchService searchService;
 

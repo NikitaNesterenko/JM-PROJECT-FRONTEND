@@ -4,6 +4,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jm.stockx.components.news.news_body.BodyFirstNewsPage;
 import jm.stockx.components.news.news_header.HeaderRowNewsPage;
+import org.atmosphere.config.service.AtmosphereInterceptorService;
 
 @Route("news")
 public class NewsPage extends VerticalLayout {

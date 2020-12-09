@@ -3,6 +3,7 @@ package jm.stockx.controller.bid;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinService;
 import jm.stockx.components.templates.BidButton;
 import jm.stockx.http.service.BidHttpService;
 
@@ -14,5 +15,6 @@ public class BidButtonView extends VerticalLayout {
         Button button = bidButton.createButton();
         add(button);
         button.addClickListener(event -> bidHttpService.sendBid());
+
     }
 }

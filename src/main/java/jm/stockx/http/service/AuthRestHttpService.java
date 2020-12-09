@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class AuthRestHttpService {
 
     private final AuthRestHttpServiceClient authRestHttpServiceClient;
-    private String role;
+    private       String                    role;
 
     @Autowired
     public AuthRestHttpService(AuthRestHttpServiceClient authRestHttpServiceClient) {
@@ -22,15 +22,20 @@ public class AuthRestHttpService {
     public String getToken(String username, String password) {
 
         UserLoginDto userLoginDto = new UserLoginDto(username, password, true);
+
         try {
-            UserTokenDto userTokenDto =
-             authRestHttpServiceClient.getToken(
-                    userLoginDto);
+
+            UserTokenDto userTokenDto = authRestHttpServiceClient.getToken(userLoginDto);
             this.role = userTokenDto.getRole();
             return userTokenDto.getToken();
+
         } catch (Exception e) {
+
             System.out.println(e.getMessage());
             return null;
+
         }
+
     }
+
 }

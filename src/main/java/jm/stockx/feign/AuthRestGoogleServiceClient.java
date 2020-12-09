@@ -1,6 +1,9 @@
 package jm.stockx.feign;
 
-import org.apache.http.HttpEntity;
+import com.netflix.ribbon.proxy.annotation.Http;
+import feign.Headers;
+import org.atmosphere.config.service.AtmosphereInterceptorService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,4 +12,5 @@ public interface AuthRestGoogleServiceClient {
 
     @GetMapping("/auth/url/google")
     String getUrl();
+
 }
