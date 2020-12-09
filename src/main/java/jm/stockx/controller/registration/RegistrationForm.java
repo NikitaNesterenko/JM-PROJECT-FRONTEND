@@ -12,8 +12,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import jm.stockx.dto.UserRegistrationDto;
 import jm.stockx.http.service.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class RegistrationForm extends VerticalLayout {
+
+    private final UserRegistrationService userRegistrationService;
+
 
     @Value("${google.oauth2}")
     private String googleOAuth2 = "/oauth2/authorization/google";
@@ -42,7 +47,8 @@ public class RegistrationForm extends VerticalLayout {
     private HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
     private Button signUp = new Button("Sign Up");
 
-    public RegistrationForm() {
+    public RegistrationForm(UserRegistrationService userRegistrationService) {
+        this.userRegistrationService = userRegistrationService;
         googleLoginButton.addClassName("googleLoginButton");
         facebookLoginButton.addClassName("facebookLoginButton");
         appleLoginButton.addClassName("appleLoginButton");
@@ -60,8 +66,6 @@ public class RegistrationForm extends VerticalLayout {
 
         signUp.addClickShortcut(Key.ENTER);
         signUp.addClassName("signUp");
-
-        UserRegistrationService userRegistrationService = new UserRegistrationService();
 
         signUp.addClickListener(event -> userRegistrationService.registerUser(
                 new UserRegistrationDto(firstName.getValue(), lastName.getValue(), email.getValue())

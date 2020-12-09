@@ -20,11 +20,6 @@ public class UserLoginDto {
 
     private Boolean rememberMe;
 
-//    public UserLoginDto(User user) {
-//        this.email = user.getEmail();
-//        this.password = user.getPassword();
-//    }
-
     public UserLoginDto(UserDto userDTO) {
         this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();

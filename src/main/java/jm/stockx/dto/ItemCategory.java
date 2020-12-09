@@ -1,5 +1,8 @@
 package jm.stockx.dto;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public enum ItemCategory {
     ACCESSORIES,
     BOTTOMS,
@@ -9,5 +12,6 @@ public enum ItemCategory {
     T_SHIRTS,
     TOPS_SWEATSHIRTS,
     BAGS,
-    BOX_LOGOS
+    BOX_LOGOS;
+
 }

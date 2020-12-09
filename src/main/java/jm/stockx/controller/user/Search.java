@@ -40,7 +40,7 @@ public class Search extends VerticalLayout {
         List<ItemSearchDto> searchItems = searchService.getItemSearchDtoBySearch(search);
 
         for (ItemSearchDto item : searchItems) {
-                Button button = new Button(item.getCount() + " result found in " + item.getItemCategory());
+                Button button = new Button(item.getCount() + " result found in " + item.getItemCategoryStr());
                 configureButton(button);
                 buttonLayout.add(button);
         }
