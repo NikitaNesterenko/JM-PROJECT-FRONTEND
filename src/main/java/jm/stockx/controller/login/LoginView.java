@@ -25,16 +25,15 @@ import java.util.Locale;
 @Route("login")
 @PageTitle("Login")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver, LocaleChangeObserver {
-    @Value("${cookie.token.name}")
-    private String cookieTokenName;
 
     private final AuthRestGoogleService googleService;
-    private final LoginForm login;
-    private final AuthRestHttpService auth;
-    private final Button googleButton;
-
-    private  final H1 vaad = new H1("");
-    private final Select<Locale> languageSelect;
+    private final LoginForm             login;
+    private final AuthRestHttpService   auth;
+    private final Button                googleButton;
+    private final H1                    vaad = new H1("");
+    private final Select<Locale>        languageSelect;
+    @Value("${cookie.token.name}")
+    private       String                cookieTokenName;
 
     public LoginView(AuthRestHttpService auth, AuthRestGoogleService googleService, I18NProvider i18NProvider) {
 
@@ -58,9 +57,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
             String token = auth.getToken(e.getUsername(), e.getPassword());
             if (token != null) {
                 VaadinService.getCurrentResponse().addCookie(new Cookie(cookieTokenName, token));
-                if(auth.getRole().equals("ROLE_ADMIN")){
+                if (auth.getRole().equals("ROLE_ADMIN")) {
                     getUI().get().getPage().setLocation("admin");
-                }else {
+                } else {
                     getUI().get().getPage().setLocation("/");
                 }
             } else {
@@ -77,11 +76,13 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
                 login,
                 googleButton
         );
+
+
     }
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        if(beforeEnterEvent.getLocation()
+        if (beforeEnterEvent.getLocation()
                 .getQueryParameters()
                 .getParameters()
                 .containsKey("error")) {

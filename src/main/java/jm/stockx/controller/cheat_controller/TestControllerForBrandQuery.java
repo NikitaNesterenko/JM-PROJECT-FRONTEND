@@ -29,6 +29,8 @@ public class TestControllerForBrandQuery extends VerticalLayout {
         add(grid);
         configureGrid();
         updateList();
+
+
     }
 
     private void configureGrid() {

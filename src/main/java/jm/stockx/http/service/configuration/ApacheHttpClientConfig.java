@@ -1,6 +1,8 @@
 package jm.stockx.http.service.configuration;
 
+
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
 import org.apache.http.HeaderElement;
 import org.apache.http.HeaderElementIterator;
 import org.apache.http.HeaderIterator;
@@ -13,16 +15,17 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import static jm.stockx.http.service.configuration.HttpClientConfigConstants.*;
-
 @Configuration
 @EnableScheduling
 @Slf4j
 public class ApacheHttpClientConfig {
+
 
     @Bean
     public CloseableHttpClient httpClient() {
@@ -52,6 +55,8 @@ public class ApacheHttpClientConfig {
                 if (value != null && param.equalsIgnoreCase("timeout")) {
                     return Long.parseLong(value) * 1000; // convert to ms
                 }
+
+
             }
 
             return DEFAULT_KEEP_ALIVE_TIME;
@@ -71,4 +76,6 @@ public class ApacheHttpClientConfig {
 
         return poolingConnectionManager;
     }
+
+
 }
