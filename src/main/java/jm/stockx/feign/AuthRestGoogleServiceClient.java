@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "google", url = "http://localhost:8080")
 public interface AuthRestGoogleServiceClient {
 
-    @GetMapping("/auth/url/google")
+    @GetMapping("/api/auth/url/google")
     String getUrl();
 }
