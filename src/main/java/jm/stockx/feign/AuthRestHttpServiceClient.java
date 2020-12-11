@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "Aut", url = "http://localhost:8080")
 public interface AuthRestHttpServiceClient {
 
-    @PostMapping(value = "/auth/login",  consumes = "application/json")
+    @PostMapping(value = "/api/auth/login",  consumes = "application/json")
     UserTokenDto getToken(@RequestBody UserLoginDto userLoginDto);
 
 }

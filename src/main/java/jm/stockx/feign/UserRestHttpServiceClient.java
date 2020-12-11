@@ -6,25 +6,21 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "userrest")
 public interface UserRestHttpServiceClient {
 
-    @GetMapping(value = "{requestUrl}{url}",  consumes = "application/json")
-    UserDto getLoggedInUser(@PathVariable("requestUrl") String requestUrl,
-                            @PathVariable("url") String url);
+    @GetMapping(value = "/rest/api/users/getLoggedInUser",  consumes = "application/json")
+    UserDto getLoggedInUser();
 
-    @GetMapping(value = "{requestUrl}{url}{email}",  consumes = "application/json")
-    String sendRecoveryLinkToEmail(@PathVariable("requestUrl") String requestUrl,
-                                         @PathVariable("url") String url,
-                                         @PathVariable("email") String email);
+    @GetMapping(value = "/rest/api/users/password-recovery/{email}",  consumes = "application/json")
+    String sendRecoveryLinkToEmail(@PathVariable("email") String email);
 
-    @GetMapping(value = "{requestUrl}{url}{code}",  consumes = "application/json")
-    HttpResponse activateAccountByToken(@PathVariable("requestUrl") String requestUrl,
-                                        @PathVariable("url") String url,
-                                        @PathVariable("code") int code);
+    @GetMapping(value = "/rest/api/users/registration/{code}",  consumes = "application/json")
+    HttpResponse activateAccountByToken(@PathVariable("code") int code);
 
-    @PostMapping(value = "{requestUrl}{url}",  consumes = "application/json")
-    String passwordRecovery(@PathVariable("requestUrl") String requestUrl,
-                                  @PathVariable("url") String url);
+    @PostMapping(value = "/rest/api/users/password-recovery",  consumes = "application/json")
+    String passwordRecovery(@RequestParam(name = "token") String link,
+                            @RequestParam(name = "password") String newPassword);
 }
