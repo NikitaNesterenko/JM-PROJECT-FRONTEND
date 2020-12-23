@@ -1,3 +1,4 @@
+/*
 package jm.stockx.http.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,3 +61,4 @@ public class UserRestHttpService {
         this.requestUrl = requestUrl;
     }
 }
+*/
