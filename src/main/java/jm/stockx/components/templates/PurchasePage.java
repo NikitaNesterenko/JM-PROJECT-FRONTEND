@@ -9,12 +9,9 @@ import jm.stockx.components.purchase.InfoProductPage;
 @Route("purchase")
 public class PurchasePage extends VerticalLayout {
     private HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
-    private PurchaseBody body = new PurchaseBody();
     private InfoProductPage productPage = new InfoProductPage();
 
     public PurchasePage() {
-        setAlignSelf(FlexComponent.Alignment.CENTER, body);
-
         add(productPage);
     }
 }
