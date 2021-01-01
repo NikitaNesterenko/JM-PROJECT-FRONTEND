@@ -152,7 +152,7 @@ public class HeaderRowNewsPage extends HorizontalLayout {
         configureStockXLogo();
         configureBlogDiv();
         configureHeaderActionsDiv();
-        clickOnBtnConfiguration();
+       // clickOnBtnConfiguration();
 
         setPadding(false);
         setSpacing(false);
@@ -169,18 +169,18 @@ public class HeaderRowNewsPage extends HorizontalLayout {
     }
 
     //Header buttons click events configuration
-    private void clickOnBtnConfiguration() {
-        searchBtn.addClickListener((e) -> {
-            searchDiv.remove(searchBtn);
-            HorizontalLayout searchField = new HorizontalLayout(searchBtn, searchInput, hideSearchBtn);
-            searchField.setAlignItems(Alignment.CENTER);
-            searchField.setAlignItems(Alignment.CENTER);
-            searchDiv.add(searchField);
-        });
-
-        hideSearchBtn.addClickListener((e) -> {
-            searchDiv.removeAll();
-            searchDiv.add(searchBtn);
-        });
-    }
+//    private void clickOnBtnConfiguration() {
+//        searchBtn.addClickListener((e) -> {
+//            searchDiv.remove(searchBtn);
+//            HorizontalLayout searchField = new HorizontalLayout(searchBtn, searchInput, hideSearchBtn);
+//            searchField.setAlignItems(Alignment.CENTER);
+//            searchField.setAlignItems(Alignment.CENTER);
+//            searchDiv.add(searchField);
+//        });
+//
+//        hideSearchBtn.addClickListener((e) -> {
+//            searchDiv.removeAll();
+//            searchDiv.add(searchBtn);
+//        });
+//    }
 }
