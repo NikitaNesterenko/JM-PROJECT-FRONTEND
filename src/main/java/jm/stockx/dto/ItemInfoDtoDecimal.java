@@ -38,17 +38,7 @@ public class ItemInfoDtoDecimal implements Serializable {
 
     private String name;
 
-//    public ItemInfoDtoDecimal(ItemInfo itemInfo) {
-//        this.id = itemInfo.getId();
-//        this.price = itemInfo.getPrice().getAmount();
-//        this.lowestAsk = itemInfo.getLowestAsk().getAmount();
-//        this.highestBid = itemInfo.getHighestBid().getAmount();
-//        this.size = itemInfo.getSize().getSize();
-//        this.ItemId = itemInfo.getItem().getId();
-//        this.itemImgUrl = itemInfo.getItemImageUrl();
-//    }
-
-
+    
     @Override
     public String toString() {
         return "ItemInfoDtoDecimal{" +
