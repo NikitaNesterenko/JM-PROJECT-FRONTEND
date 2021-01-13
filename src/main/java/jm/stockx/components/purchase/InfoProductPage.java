@@ -153,7 +153,7 @@ public class InfoProductPage extends VerticalLayout {
 
     private void configureInfoProductDive_1() {
         H3 text = new H3();
-        text.setText("Info about product");
+        text.setText(item.getName());
         infoProductDiv_1.getStyle().set("font-size", "70px");
         infoProductDiv_1.getStyle().set("width", "50vh");
         infoProductDiv_1.getStyle().set("hight", "70px");
