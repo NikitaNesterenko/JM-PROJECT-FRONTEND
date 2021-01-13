@@ -1,13 +1,11 @@
 package jm.stockx.dto;
 
 import lombok.*;
-import org.joda.money.Money;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -20,19 +18,21 @@ public class ItemInfoDto {
 
     @Positive(message = "Цена должна быть положительной")
     @NotNull
-    private Money price;
+    private BigDecimal price;
 
     @Positive(message = "Цена должна быть положительной")
     @NotNull
-    private Money lowestAsk;
+    private BigDecimal lowestAsk;
 
     @Positive(message = "Ставка должна быть положительной")
     @NotNull
-    private Money highestBid;
+    private BigDecimal highestBid;
 
     private List<Double> sizes;
 
     private Long ItemId;
+
+    private String itemImgUrl;
 
 
 //    public ItemInfoDto(ItemInfo itemInfo) {

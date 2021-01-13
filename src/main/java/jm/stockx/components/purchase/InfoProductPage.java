@@ -1,15 +1,24 @@
 package jm.stockx.components.purchase;
 
-import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
-
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.textfield.TextField;
 import jm.stockx.components.news.news_header.HeaderRowNewsPage;
+import jm.stockx.dto.ItemInfoDtoDecimal;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
+@Component
+@Getter
+@Setter
 public class InfoProductPage extends VerticalLayout {
+    //@Autowired
+    ItemInfoDtoDecimal item;
+
     private HorizontalLayout headPage = new HorizontalLayout();
     private HorizontalLayout namePage = new HorizontalLayout();
     private HorizontalLayout menuPage = new HorizontalLayout();
@@ -41,6 +50,10 @@ public class InfoProductPage extends VerticalLayout {
     private Div nameProductDiv = new Div();
 
     public InfoProductPage() {
+    }
+
+    public InfoProductPage(ItemInfoDtoDecimal item) {
+        this.item = item;
         initProductInfoPage();
     }
 
@@ -53,6 +66,7 @@ public class InfoProductPage extends VerticalLayout {
         compilationProductDiv_1.getStyle().set("padding", "0 0 0");
         compilationProductDiv_1.getStyle().set("border", "6px dotted DarkOrange");
         compilationProductDiv_1.add(text);
+
     }
 
     private void configureCompilationProductDiv2() {
@@ -162,7 +176,7 @@ public class InfoProductPage extends VerticalLayout {
 
     private void configureProductDiv() {
         H3 text = new H3();
-        text.setText("Info about product");
+        text.setText(item.getName());
         nameProductDiv.getStyle().set("font-size", "70px");
         nameProductDiv.getStyle().set("width", "100vh");
         nameProductDiv.getStyle().set("margin", "0 auto");
@@ -174,14 +188,14 @@ public class InfoProductPage extends VerticalLayout {
     public void configureSizeMenu() {
         Select<String> valueSelect = new Select<>();
         valueSelect.setItems("40", "41", "42");
-        valueSelect.setValue("40");
+        valueSelect.setValue(item.getSize().toString());
         valueSelect.getStyle().set("width", "25vh");
         sizeMenuDiv.add(valueSelect);
     }
 
     public void configureCurrentPrice() {
         H3 text = new H3();
-        text.setText("currentPrice");
+        text.setText(item.getPrice().toString());
         currentPrice.getStyle().set("font-size", "70px");
         currentPrice.getStyle().set("width", "25vh");
         currentPrice.getStyle().set("margin", "0 auto");
@@ -192,7 +206,7 @@ public class InfoProductPage extends VerticalLayout {
 
     public void configureLovestPrice() {
         H3 text = new H3();
-        text.setText("lovestPriceDiv");
+        text.setText(item.getLowestAsk().toString());
         lovestPriceDiv.getStyle().set("font-size", "70px");
         lovestPriceDiv.getStyle().set("width", "25vh");
         lovestPriceDiv.getStyle().set("margin", "0 auto");
@@ -205,7 +219,7 @@ public class InfoProductPage extends VerticalLayout {
 
     public void configureHighestPriceDiv() {
         H3 text = new H3();
-        text.setText("highestPriceDiv");
+        text.setText(item.getHighestBid().toString());
         highestPriceDiv.getStyle().set("font-size", "70px");
         highestPriceDiv.getStyle().set("width", "25vh");
         highestPriceDiv.getStyle().set("margin", "0 auto");
