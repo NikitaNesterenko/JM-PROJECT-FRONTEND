@@ -6,17 +6,20 @@ import jm.stockx.components.purchase.InfoProductPage;
 import jm.stockx.dto.ItemInfoDtoDecimal;
 import jm.stockx.feign.PurchaseFeignRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
 @Route("purchase")
+@Scope("prototype")
 @Component
 public class PurchasePage extends VerticalLayout implements HasUrlParameter<String> {
 
 
-    final PurchaseFeignRestClient servicePurchase;
+    //final
+    PurchaseFeignRestClient servicePurchase;
     private InfoProductPage productPageInfo;
     ItemInfoDtoDecimal itemInfoDtoDecimal;
     Long par;

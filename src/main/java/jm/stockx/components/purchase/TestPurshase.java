@@ -10,12 +10,14 @@ import jm.stockx.dto.ItemInfoDtoDecimal;
 import jm.stockx.feign.PurchaseFeignRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //import java.awt.*;
 
 
 @EnableFeignClients
+@Scope("prototype")
 @Component
 public class TestPurshase extends VerticalLayout {
     private VerticalLayout headPage = new VerticalLayout();
@@ -23,7 +25,7 @@ public class TestPurshase extends VerticalLayout {
     private Anchor blogItem = new Anchor();
 
 
-    final
+   // final
     PurchaseFeignRestClient servicePurchase;
 
     public void configurationPage() {
