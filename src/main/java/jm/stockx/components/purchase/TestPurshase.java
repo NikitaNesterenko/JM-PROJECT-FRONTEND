@@ -10,28 +10,33 @@ import jm.stockx.dto.ItemInfoDtoDecimal;
 import jm.stockx.feign.PurchaseFeignRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 //import java.awt.*;
 
 
 @EnableFeignClients
+@Scope("prototype")
 @Component
 public class TestPurshase extends VerticalLayout {
     private VerticalLayout headPage = new VerticalLayout();
     private Div buttonDivItem = new Div();
     private Anchor blogItem = new Anchor();
+    String id;
 
-
-    final
+   // final
     PurchaseFeignRestClient servicePurchase;
 
     public void configurationPage() {
         final Grid<ItemInfoDtoDecimal> listItem = new Grid<ItemInfoDtoDecimal>(ItemInfoDtoDecimal.class);
         TextField valueField = new TextField();
         valueField.setValue("ведите id товара");
-
-                    listItem.setItems(servicePurchase.getWeather().getBody());
+                    List<ItemInfoDtoDecimal> list =  servicePurchase.getWeather().getBody();
+                   // listItem.setItems(servicePurchase.getWeather().getBody());
+                    listItem.setItems(list);
                     headPage.add(listItem);
 
         final Button buttoItemInfo = new Button("get Item",
@@ -44,6 +49,7 @@ public class TestPurshase extends VerticalLayout {
 
         configureItemLink ();
         headPage.add(valueField, buttoItemInfo, blogItem);
+
 
     }
 
@@ -58,6 +64,7 @@ public class TestPurshase extends VerticalLayout {
     public void configureItemLink () {
         blogItem.add("get ItemInfo");
         blogItem.setHref("http://localhost:4446/purchase?id=1");
+
 
     }
 

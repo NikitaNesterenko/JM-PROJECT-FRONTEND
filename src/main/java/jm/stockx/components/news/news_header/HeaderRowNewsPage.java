@@ -183,4 +183,5 @@ public class HeaderRowNewsPage extends HorizontalLayout {
 //            searchDiv.add(searchBtn);
 //        });
 //    }
+
 }

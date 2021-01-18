@@ -10,9 +10,11 @@ import jm.stockx.components.news.news_header.HeaderRowNewsPage;
 import jm.stockx.dto.ItemInfoDtoDecimal;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
 @Getter
 @Setter
 public class InfoProductPage extends VerticalLayout {
@@ -27,7 +29,7 @@ public class InfoProductPage extends VerticalLayout {
     private HorizontalLayout graphProductPage = new HorizontalLayout();
     private HorizontalLayout compilationModelProductPage = new HorizontalLayout();
 
-    private HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
+   // private HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
     private HorizontalLayout picturePage = new HorizontalLayout();
 
     private Div sizeMenuDiv = new Div();
@@ -259,7 +261,7 @@ public class InfoProductPage extends VerticalLayout {
 
 
     private void initProductInfoPage() {
-        headPage.setWidthFull();
+       // headPage.setWidthFull();
         menuPage.setWidthFull();
         namePage.setWidthFull();
         picturePage.setWidthFull();
@@ -269,14 +271,14 @@ public class InfoProductPage extends VerticalLayout {
         compilationModelProductPage.setWidthFull();
         configureProductDiv();
         configureMenuPage();
-        headPage.add(navPanel);
+       // headPage.add(navPanel);
         namePage.add(nameProductDiv);
         configureNewsPicture();
         configureInfoProductPage();
         configureСompilationModelProductPage();
         configureGraphProductPage();
-        add(headPage, namePage, menuPage, picturePage, infoProductPage, compilationModelProductPage, graphProductPage);
-
+       // add(headPage, namePage, menuPage, picturePage, infoProductPage, compilationModelProductPage, graphProductPage);
+        add(namePage, menuPage, picturePage, infoProductPage, compilationModelProductPage, graphProductPage);
     }
 
 }

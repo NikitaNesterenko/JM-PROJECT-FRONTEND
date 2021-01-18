@@ -3,15 +3,20 @@ package jm.stockx.controller.purchase;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
 import jm.stockx.components.purchase.InfoProductPage;
+import jm.stockx.controller.MainLayout;
 import jm.stockx.dto.ItemInfoDtoDecimal;
 import jm.stockx.feign.PurchaseFeignRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
-@Route("purchase")
+
+//@Route("purchase")
+@Route(value = "purchase", layout = MainLayout.class)
+@Scope("prototype")
 @Component
 public class PurchasePage extends VerticalLayout implements HasUrlParameter<String> {
 
@@ -31,13 +36,13 @@ public class PurchasePage extends VerticalLayout implements HasUrlParameter<Stri
 
         Map<String, List<String>> parametersMap =
                 queryParameters.getParameters();
-        par = Long.valueOf(parametersMap.get("id").get(0));
+       // par = Long.valueOf(parametersMap.get("id").get(0));
+        par = Long.valueOf(parameter);
         itemInfoDtoDecimal = servicePurchase.getItemInfoDtoDec(par).getBody();
         productPageInfo = new InfoProductPage(itemInfoDtoDecimal);
         add(productPageInfo);
-
-
     }
+
 
     @Autowired
     public PurchasePage(InfoProductPage productPage, PurchaseFeignRestClient servicePurchase) {
