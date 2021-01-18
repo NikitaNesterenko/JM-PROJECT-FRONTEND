@@ -157,8 +157,7 @@
             <version>2.0.0.RELEASE</version>
         </dependency>
 
-        <!--AbstractChartExample
-        ?надо сделать exclusion?-->
+        <!--AbstractChartExample-->
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-charts-flow</artifactId>
@@ -191,10 +190,19 @@
             <id>vaadin-addons</id>
             <url>https://maven.vaadin.com</url>
         </repository>
+
+
     </repositories>
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.vaadin.addons</groupId>
+                <artifactId>clientstorage</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-bom</artifactId>

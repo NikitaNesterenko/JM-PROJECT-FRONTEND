@@ -7,13 +7,9 @@ import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.ListSeries;
 import jm.stockx.dto.ItemPriceChartDto;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 
-@Setter
-@Component
 public class TestChart extends AbstractChartExample {
-
 
     public TestChart(ItemPriceChartDto item) {
 
