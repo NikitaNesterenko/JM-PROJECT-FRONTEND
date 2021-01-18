@@ -23,7 +23,4 @@ public class ServicePurchase implements PurchaseFeignRestClient {
     public ResponseEntity<ItemInfoDtoDecimal> getItemInfoDtoDec(Long id) {
         return null;
     }
-//    public ResponseEntity<String> getWeather() {
-//        return null;
-//    }
 }

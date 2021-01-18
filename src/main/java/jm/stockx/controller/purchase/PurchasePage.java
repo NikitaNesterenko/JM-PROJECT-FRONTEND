@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
-
 
 //@Route("purchase")
 @Route(value = "purchase", layout = MainLayout.class)
@@ -21,10 +18,10 @@ import java.util.Map;
 public class PurchasePage extends VerticalLayout implements HasUrlParameter<String> {
 
 
-    final PurchaseFeignRestClient servicePurchase;
+    private final PurchaseFeignRestClient servicePurchase;
     private InfoProductPage productPageInfo;
-    ItemInfoDtoDecimal itemInfoDtoDecimal;
-    Long par;
+    private ItemInfoDtoDecimal itemInfoDtoDecimal;
+    private Long par;
 
     @Override
     public void setParameter(BeforeEvent event,
@@ -34,9 +31,8 @@ public class PurchasePage extends VerticalLayout implements HasUrlParameter<Stri
         QueryParameters queryParameters = location
                 .getQueryParameters();
 
-        Map<String, List<String>> parametersMap =
-                queryParameters.getParameters();
-       // par = Long.valueOf(parametersMap.get("id").get(0));
+//        Map<String, List<String>> parametersMap =
+//                queryParameters.getParameters();
         par = Long.valueOf(parameter);
         itemInfoDtoDecimal = servicePurchase.getItemInfoDtoDec(par).getBody();
         productPageInfo = new InfoProductPage(itemInfoDtoDecimal);

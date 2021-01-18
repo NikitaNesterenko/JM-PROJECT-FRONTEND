@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-//@Route("purchas")
 @Route(value = "purchas", layout = MainLayout.class)
 public class AllItemController extends VerticalLayout {
 
 
     private final TestPurshase productPage;
+
     @Autowired
     public AllItemController(TestPurshase productPage) {
         this.productPage = productPage;
