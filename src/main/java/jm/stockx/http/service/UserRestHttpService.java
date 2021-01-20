@@ -23,39 +23,39 @@ public class UserRestHttpService {
         this.client = client;
     }
 
-    public UserDto getLoggedInUser(String url) {
-        String responseJson = null;
-        try {
-            responseJson = EntityUtils.toString((HttpEntity) client.getLoggedInUser(requestUrl, url));
-            return new ObjectMapper().readValue(responseJson, UserDto.class);
-        } catch (IOException e) {
-            throw new UserRestServiceException("Unauthorized user", e);
-        }
-    }
+//    public UserDto getLoggedInUser(String url) {
+//        String responseJson = null;
+//        try {
+//            responseJson = EntityUtils.toString((HttpEntity) client.getLoggedInUser(requestUrl, url));
+//            return new ObjectMapper().readValue(responseJson, UserDto.class);
+//        } catch (IOException e) {
+//            throw new UserRestServiceException("Unauthorized user", e);
+//        }
+//    }
 
-    public String sendRecoveryLinkToEmail(String url, String email) {
-        try {
-            return client.sendRecoveryLinkToEmail(requestUrl, url, email);
-        } catch (Exception e) {
-            throw new UserRestServiceException("Invalid email", e);
-        }
-    }
+//    public String sendRecoveryLinkToEmail(String url, String email) {
+//        try {
+//            return client.sendRecoveryLinkToEmail(requestUrl, url, email);
+//        } catch (Exception e) {
+//            throw new UserRestServiceException("Invalid email", e);
+//        }
+//    }
 
-    public HttpResponse activateAccountByToken(String url, int code) {
-        try {
-            return client.activateAccountByToken(requestUrl, url, code);
-        } catch (Exception e) {
-            throw new UserRestServiceException("Invalid token", e);
-        }
-    }
+//    public HttpResponse activateAccountByToken(String url, int code) {
+//        try {
+//            return client.activateAccountByToken(requestUrl, url, code);
+//        } catch (Exception e) {
+//            throw new UserRestServiceException("Invalid token", e);
+//        }
+//    }
 
-    public String passwordRecovery(String url) {
-        try {
-            return client.passwordRecovery(requestUrl, url);
-        } catch (Exception e) {
-            throw new UserRestServiceException("Password recovery error", e);
-        }
-    }
+//    public String passwordRecovery(String url) {
+//        try {
+//            return client.passwordRecovery(requestUrl, url);
+//        } catch (Exception e) {
+//            throw new UserRestServiceException("Password recovery error", e);
+//        }
+//    }
 
     public void setRequestUrl(String requestUrl) {
         this.requestUrl = requestUrl;
