@@ -24,9 +24,9 @@ public class AuthRestHttpService {
         UserLoginDto userLoginDto = new UserLoginDto(username, password, true);
         try {
             UserTokenDto userTokenDto =
-             authRestHttpServiceClient.getToken(
-                    userLoginDto);
-            this.role = userTokenDto.getRole();
+                    authRestHttpServiceClient.getToken(
+                            userLoginDto);
+            this.role = userTokenDto.getRoleName();
             return userTokenDto.getToken();
         } catch (Exception e) {
             System.out.println(e.getMessage());
