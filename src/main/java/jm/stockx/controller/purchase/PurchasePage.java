@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
-//@Route("purchase")
 @Route(value = "purchase", layout = MainLayout.class)
 @Scope("prototype")
 @Component
