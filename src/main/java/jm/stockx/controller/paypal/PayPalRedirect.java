@@ -35,6 +35,7 @@ public class PayPalRedirect extends Div implements HasUrlParameter<String> {
     private void makePayment(Map<String, List<String>> parametersMap) {
         String paymentId = parametersMap.get("paymentId").get(0);
         String payerID = parametersMap.get("PayerID").get(0);
-        payPalRestClient.makePayment(paymentId, payerID);
+        String returned = payPalRestClient.makePayment(paymentId, payerID);
+        System.out.println(returned);
     }
 }

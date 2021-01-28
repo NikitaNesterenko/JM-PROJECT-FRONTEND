@@ -1,11 +1,8 @@
 package jm.stockx.controller.paypal;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
-import jm.stockx.controller.purchase.AllItemController;
 
 @Route("order/create")
 public class PayPalCreateOrder extends Div {
@@ -24,9 +21,11 @@ public class PayPalCreateOrder extends Div {
         button.addClickListener(buttonClickEvent -> {
             String approval_URL = payPalRestClient.createPayment(generateOrder);
             System.out.println(approval_URL);
-            addClickListener(e -> UI.getCurrent().navigate(approval_URL));
-
+            getUI().get().getPage().setLocation(approval_URL);
         });
+        button.setText("Create Order");
+
+
         return button;
     }
 
