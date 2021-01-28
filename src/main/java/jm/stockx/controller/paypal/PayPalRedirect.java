@@ -1,8 +1,10 @@
 package jm.stockx.controller.paypal;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.router.*;
-import jm.stockx.controller.purchase.AllItemController;
+import jm.stockx.components.news.news_header.HeaderRowNewsPage;
 import jm.stockx.controller.user.MainView;
 
 import java.util.List;
@@ -10,11 +12,12 @@ import java.util.Map;
 
 @Route("paypal/redirect")
 public class PayPalRedirect extends Div implements HasUrlParameter<String> {
-
+    private final HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
     private final PayPalRestClient payPalRestClient;
 
     public PayPalRedirect(PayPalRestClient payPalRestClient) {
         this.payPalRestClient = payPalRestClient;
+        add(navPanel, createButton());
     }
 
     @Override
@@ -24,12 +27,15 @@ public class PayPalRedirect extends Div implements HasUrlParameter<String> {
         Map<String, List<String>> parametersMap = queryParameters.getParameters();
 
         makePayment(parametersMap);
-        createRouterLink();
+        createButton();
         System.out.println(parametersMap);
     }
 
-    private RouterLink createRouterLink() {
-        return new RouterLink("Back to Main Page", MainView.class);
+    private Button createButton() {
+        Button button = new Button();
+        button.addClickListener(buttonClickEvent -> UI.getCurrent().navigate(MainView.class));
+        button.setText("Back to Main Page");
+        return button;
     }
 
     private void makePayment(Map<String, List<String>> parametersMap) {
