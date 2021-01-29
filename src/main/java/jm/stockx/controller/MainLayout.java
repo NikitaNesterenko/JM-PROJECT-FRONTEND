@@ -16,14 +16,13 @@ public class MainLayout extends AppLayout {
 
     public HeaderRowNewsPage headerRowNewsPage = new HeaderRowNewsPage();
 
-
     public MainLayout() {
         createHeader();
         createDrawer();
     }
 
     private void createHeader() {
-        H1 logo = new H1("Vaadin CRM");
+        H1 logo = new H1("StockX CRM");
         logo.addClassName("logo");
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), headerRowNewsPage);
         header.addClassName("header");
@@ -37,9 +36,9 @@ public class MainLayout extends AppLayout {
         RouterLink listLink = new RouterLink("List", AllItemController.class);
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(
+        VerticalLayout createdLayout = new VerticalLayout(
                 listLink,
-                new RouterLink("Gei Item", PurchasePage.class, "5")
-        ));
+                new RouterLink("Get Item", PurchasePage.class, "5"));
+        addToDrawer(createdLayout);
     }
 }
