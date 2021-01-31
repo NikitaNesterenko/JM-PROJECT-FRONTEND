@@ -5,7 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jm.stockx.components.news.news_header.HeaderRowNewsPage;
-import jm.stockx.controller.paypal.PayPalCreateOrder;
+import jm.stockx.controller.paypal.PayPalCreateOrderView;
 import jm.stockx.controller.purchase.AllItemController;
 import org.springframework.context.annotation.Scope;
 
@@ -22,7 +22,7 @@ public class MainView extends VerticalLayout {
 
     private Button createButton() {
         Button button = new Button();
-        button.addClickListener(buttonClickEvent -> UI.getCurrent().navigate(PayPalCreateOrder.class));
+        button.addClickListener(buttonClickEvent -> UI.getCurrent().navigate(PayPalCreateOrderView.class));
         button.setText("Create PayPal Order");
         return button;
     }

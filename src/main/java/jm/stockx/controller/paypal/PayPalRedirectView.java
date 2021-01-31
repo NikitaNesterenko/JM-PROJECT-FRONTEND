@@ -3,20 +3,22 @@ package jm.stockx.controller.paypal;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.router.*;
 import jm.stockx.components.news.news_header.HeaderRowNewsPage;
 import jm.stockx.controller.user.MainView;
+import jm.stockx.http.service.PayPalOrderService;
 
 import java.util.List;
 import java.util.Map;
 
 @Route("paypal/redirect")
-public class PayPalRedirect extends Div implements HasUrlParameter<String> {
+public class PayPalRedirectView extends Div implements HasUrlParameter<String> {
     private final HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
-    private final PayPalRestClient payPalRestClient;
+    private final PayPalOrderService payPalOrderService;
 
-    public PayPalRedirect(PayPalRestClient payPalRestClient) {
-        this.payPalRestClient = payPalRestClient;
+    public PayPalRedirectView(PayPalOrderService payPalOrderService) {
+        this.payPalOrderService = payPalOrderService;
         add(navPanel, createButton());
     }
 
@@ -28,7 +30,6 @@ public class PayPalRedirect extends Div implements HasUrlParameter<String> {
 
         makePayment(parametersMap);
         createButton();
-        System.out.println(parametersMap);
     }
 
     private Button createButton() {
@@ -41,7 +42,7 @@ public class PayPalRedirect extends Div implements HasUrlParameter<String> {
     private void makePayment(Map<String, List<String>> parametersMap) {
         String paymentId = parametersMap.get("paymentId").get(0);
         String payerID = parametersMap.get("PayerID").get(0);
-        String returned = payPalRestClient.makePayment(paymentId, payerID);
-        System.out.println(returned);
+        String status = payPalOrderService.makePayment(paymentId, payerID);
+        Notification.show(status.equals("Payment approved") ? "Payment approved" : "Something went wrong");
     }
 }
