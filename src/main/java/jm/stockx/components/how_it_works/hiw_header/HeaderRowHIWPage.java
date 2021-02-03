@@ -5,9 +5,9 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 public class HeaderRowHIWPage extends HorizontalLayout {
-    private Anchor logoLink = new Anchor();
+    private final Anchor logoLink = new Anchor();
 
-    private HorizontalLayout navbarInner = new HorizontalLayout(logoLink);
+    private final HorizontalLayout navbarInner = new HorizontalLayout(logoLink);
 
     public HeaderRowHIWPage() {
         initHeaderRowHIWPage();
@@ -26,8 +26,8 @@ public class HeaderRowHIWPage extends HorizontalLayout {
         imageLogo.setWidth("50%");
 
         logoLink.add(imageLogo);
-        logoLink.setWidth("200px"); //width: 200px;
-        logoLink.setHeight("90px"); //height: 90px;
+        logoLink.setWidth("200px");
+        logoLink.setHeight("90px");
         logoLink.getStyle().set("display", "flex");
         logoLink.getStyle().set("justify-content", "center");
     }

@@ -28,18 +28,13 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     @Value("${cookie.token.name}")
     private String cookieTokenName;
 
-    private final AuthRestGoogleService googleService;
     private final LoginForm login;
-    private final AuthRestHttpService auth;
     private final Button googleButton;
 
     private  final H1 vaad = new H1("");
-    private final Select<Locale> languageSelect;
 
     public LoginView(AuthRestHttpService auth, AuthRestGoogleService googleService, I18NProvider i18NProvider) {
 
-        this.auth = auth;
-        this.googleService = googleService;
         login = new LoginForm();
         googleButton = new Button();
         addClassName("login-view");
@@ -47,7 +42,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
         setJustifyContentMode(JustifyContentMode.CENTER);
         setAlignItems(Alignment.CENTER);
 
-        languageSelect = new Select<>();
+        Select<Locale> languageSelect = new Select<>();
         languageSelect.setItems(i18NProvider.getProvidedLocales());
         languageSelect.setItemLabelGenerator(l -> getTranslation(l.getLanguage()));
         languageSelect.setValue(UI.getCurrent().getLocale());
@@ -68,9 +63,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
             }
         });
 
-        googleButton.addClickListener(e -> {
-            getUI().get().getPage().setLocation(googleService.getUrl());
-        });
+        googleButton.addClickListener(e -> getUI().get().getPage().setLocation(googleService.getUrl()));
 
         add(
                 vaad,

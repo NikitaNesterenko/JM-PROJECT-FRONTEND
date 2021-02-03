@@ -27,9 +27,7 @@ public class Search extends VerticalLayout {
         configure();
         add(searchField);
 
-        searchField.addValueChangeListener(e -> {
-            updateList();
-        });
+        searchField.addValueChangeListener(e -> updateList());
     }
 
     private void updateList() {
@@ -79,9 +77,6 @@ public class Search extends VerticalLayout {
         button.setWidthFull();
     }
 
-    private void setItemsInResult(List<ItemSearchDto> items) {
-
-    }
 
 
 }

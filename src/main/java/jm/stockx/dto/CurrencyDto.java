@@ -16,8 +16,4 @@ public class CurrencyDto {
     @NotBlank(message = "Имя не должно быть null, пустым или состоять из одних лишь пробельных символов")
     private String name;
 
-//    public CurrencyDto(Currency currency) {
-//        this.id = currency.getId();
-//        this.name = currency.getName();
-//    }
 }

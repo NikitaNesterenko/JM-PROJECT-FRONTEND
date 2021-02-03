@@ -1,22 +1,21 @@
 package jm.stockx.http.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.dto.ItemSearchDto;
 import jm.stockx.feign.SearchServiceClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 
 @Service
+@Slf4j
 public class SearchService {
 
     private final SearchServiceClient client;
-    private final ObjectMapper mapper;
 
     public SearchService(SearchServiceClient client) {
         this.client = client;
-        this.mapper = new ObjectMapper();
     }
 
 
@@ -29,7 +28,7 @@ public class SearchService {
              searchItems = client.getItemSearchDtoBySearch(search);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
         }
         return searchItems;
     }

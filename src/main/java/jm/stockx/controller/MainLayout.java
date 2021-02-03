@@ -14,7 +14,7 @@ import jm.stockx.controller.purchase.PurchasePage;
 
 public class MainLayout extends AppLayout {
 
-    public HeaderRowNewsPage headerRowNewsPage = new HeaderRowNewsPage();
+    HeaderRowNewsPage headerRowNewsPage = new HeaderRowNewsPage();
 
 
     public MainLayout() {

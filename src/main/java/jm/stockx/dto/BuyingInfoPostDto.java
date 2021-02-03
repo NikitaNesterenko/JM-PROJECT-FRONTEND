@@ -1,11 +1,11 @@
 package jm.stockx.dto;
+
 import lombok.*;
 import org.joda.money.Money;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter

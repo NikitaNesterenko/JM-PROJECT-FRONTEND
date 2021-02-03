@@ -16,8 +16,4 @@ public class BidPutDto {
 
     private Boolean success;
 
-//    public BidPutDto(Bid bid) {
-//        this.id = bid.getId();
-//        this.success = bid.getSuccess();
-//    }
 }

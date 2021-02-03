@@ -1,6 +1,7 @@
 package jm.stockx.http.service.configuration;
 
 import com.vaadin.flow.i18n.I18NProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +9,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Component
+@Slf4j
 public class SimpleI18NProvider implements I18NProvider{
 
     public static final String RESOURCE_BUNDLE_NAME = "app";
@@ -41,7 +43,7 @@ public class SimpleI18NProvider implements I18NProvider{
             return MessageFormat.format(rawstring, objects);
 
         } catch (final MissingResourceException e) {
-            System.out.println(String.format("No translation found for key {%s}", key));
+            log.warn(String.format("No translation found for key {%s}", key));
             return String.format("!{%s}", key);
         } catch (final IllegalArgumentException e) {
             e.printStackTrace();

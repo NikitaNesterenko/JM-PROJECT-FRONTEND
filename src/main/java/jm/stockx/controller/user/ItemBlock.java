@@ -2,11 +2,6 @@ package jm.stockx.controller.user;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
-//import jm.stockx.SellingInfoService;
-import jm.stockx.components.templates.ProductTile;
-//import jm.stockx.dto.sellingInfo.ItemTopInfoDto;
-
-import java.util.List;
 
 @Route("itemblock")
 public class ItemBlock extends HorizontalLayout {

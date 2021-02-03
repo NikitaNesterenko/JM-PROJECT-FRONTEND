@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_OCTET_STREAM_VALUE;
 
 @Service
 public class FileStorageRestHttpService {
 
-    private String requestUrl;
 
     private final FileStorageRestHttpServiceClient client;
 
@@ -30,7 +31,7 @@ public class FileStorageRestHttpService {
         }
     }
 
-    public MultipartFile downloadItemPicture(String url, String filename, String type) {
+    public MultipartFile downloadItemPicture(String filename) {
 
         FileItem fileItem = new DiskFileItemFactory().createItem("file",
                 APPLICATION_OCTET_STREAM_VALUE, true, filename);
@@ -43,7 +44,4 @@ public class FileStorageRestHttpService {
         return new CommonsMultipartFile(fileItem);
     }
 
-    public void setRequestUrl(String requestUrl) {
-        this.requestUrl = requestUrl;
-    }
 }
