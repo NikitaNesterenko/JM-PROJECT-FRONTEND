@@ -28,11 +28,4 @@ public class BidDto {
         @NotBlank(message = "User name is mandatory")
         private String userName;
 
-//        public BidDto(@NonNull Bid bid) {
-//                this.id = bid.getId();
-//                this.price = bid.getPrice();
-//                this.success = bid.getSuccess();
-//                this.itemName = bid.getItem().getName();
-//                this.userName = bid.getUser().getUsername();
-//        }
 }

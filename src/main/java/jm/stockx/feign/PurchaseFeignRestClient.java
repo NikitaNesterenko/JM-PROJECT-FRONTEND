@@ -22,7 +22,6 @@ public interface PurchaseFeignRestClient {
   //  @RequestMapping(method = RequestMethod.GET)
     @GetMapping (value = "/api/item/allItem", consumes = "application/json")
     ResponseEntity<List<ItemInfoDtoDecimal>> getWeather();
-    //ResponseEntity<List<String>> getWeather();
 
     @GetMapping (value = "/api/item/item", consumes = "application/json")
     ResponseEntity<ItemInfoDtoDecimal> getItemInfoDtoDec(@RequestParam(value="id") Long id);

@@ -24,7 +24,7 @@ public class InfoProductPage extends VerticalLayout {
     private HorizontalLayout namePage = new HorizontalLayout();
     private HorizontalLayout menuPage = new HorizontalLayout();
     private HorizontalLayout bodyPage = new HorizontalLayout();
-    private HorizontalLayout infoProductPage = new HorizontalLayout();
+    private HorizontalLayout productPageInfo = new HorizontalLayout();
     private HorizontalLayout graphProductPage = new HorizontalLayout();
     private HorizontalLayout compilationModelProductPage = new HorizontalLayout();
 
@@ -127,7 +127,7 @@ public class InfoProductPage extends VerticalLayout {
     }
 
 
-    private void configureGraphProductDive_1() {
+    private void configureGraphProductDive1() {
         H3 text = new H3();
         text.setText("Граффик");
         graphProductDiv1.getStyle().set("font-size", "70px");
@@ -139,7 +139,7 @@ public class InfoProductPage extends VerticalLayout {
         graphProductDiv1.add(text);
     }
 
-    private void configureGraphProductDive_2() {
+    private void configureGraphProductDive2() {
         H3 text = new H3();
         text.setText("graphProductDiv_2");
         graphProductDiv2.getStyle().set("font-size", "70px");
@@ -151,7 +151,7 @@ public class InfoProductPage extends VerticalLayout {
     }
 
 
-    private void configureInfoProductDive_1() {
+    private void configureInfoProductDive1() {
         H3 text = new H3();
         text.setText(item.getName());
         infoProductDiv1.getStyle().set("font-size", "70px");
@@ -163,7 +163,7 @@ public class InfoProductPage extends VerticalLayout {
         infoProductDiv1.add(text);
     }
 
-    private void configureInfoProductDive_2() {
+    private void configureInfoProductDive2() {
         H3 text = new H3();
         text.setText("infoProductDiv_2");
         infoProductDiv2.getStyle().set("font-size", "70px");
@@ -188,7 +188,7 @@ public class InfoProductPage extends VerticalLayout {
     public void configureSizeMenu() {
         Select<String> valueSelect = new Select<>();
         valueSelect.setItems("40", "41", "42");
-        valueSelect.setValue(item.getSize().toString());
+        valueSelect.setValue(item.getSize());
         valueSelect.getStyle().set("width", "25vh");
         sizeMenuDiv.add(valueSelect);
     }
@@ -237,18 +237,18 @@ public class InfoProductPage extends VerticalLayout {
     }
 
     private void configureInfoProductPage() {
-        configureInfoProductDive_1();
-        configureInfoProductDive_2();
-        infoProductPage.add(infoProductDiv1, infoProductDiv2);
+        configureInfoProductDive1();
+        configureInfoProductDive2();
+        productPageInfo.add(infoProductDiv1, infoProductDiv2);
     }
 
     private void configureGraphProductPage() {
-        configureGraphProductDive_1();
-        configureGraphProductDive_2();
+        configureGraphProductDive1();
+        configureGraphProductDive2();
         graphProductPage.add(graphProductDiv1, graphProductDiv2);
     }
 
-    private void configureСompilationModelProductPage() {
+    private void configureCompilationProductPage() {
         configureCompilationProductDiv1();
         configureCompilationProductDiv2();
         configureCompilationProductDiv3();
@@ -259,24 +259,21 @@ public class InfoProductPage extends VerticalLayout {
 
 
     private void initProductInfoPage() {
-        // headPage.setWidthFull();
         menuPage.setWidthFull();
         namePage.setWidthFull();
         picturePage.setWidthFull();
         graphProductPage.setWidthFull();
         productPictureDiv.setWidthFull();
-        infoProductPage.setWidthFull();
+        productPageInfo.setWidthFull();
         compilationModelProductPage.setWidthFull();
         configureProductDiv();
         configureMenuPage();
-        // headPage.add(navPanel);
         namePage.add(nameProductDiv);
         configureNewsPicture();
         configureInfoProductPage();
-        configureСompilationModelProductPage();
+        configureCompilationProductPage();
         configureGraphProductPage();
-        // add(headPage, namePage, menuPage, picturePage, infoProductPage, compilationModelProductPage, graphProductPage);
-        add(namePage, menuPage, picturePage, infoProductPage, compilationModelProductPage, graphProductPage);
+        add(namePage, menuPage, picturePage, productPageInfo, compilationModelProductPage, graphProductPage);
     }
 
 }

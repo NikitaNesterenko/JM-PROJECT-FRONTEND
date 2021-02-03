@@ -1,8 +1,5 @@
 package jm.stockx.feign;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.http.HttpEntity;
-import org.atmosphere.config.service.Get;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

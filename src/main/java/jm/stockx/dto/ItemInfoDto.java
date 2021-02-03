@@ -30,7 +30,7 @@ public class ItemInfoDto {
 
     private List<Double> sizes;
 
-    private Long ItemId;
+    private Long itemId;
 
     private String itemImgUrl;
 

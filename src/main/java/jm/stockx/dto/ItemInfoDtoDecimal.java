@@ -32,7 +32,7 @@ public class ItemInfoDtoDecimal implements Serializable {
 
     private String size;
 
-    private Long ItemId;
+    private Long itemId;
 
     private String itemImgUrl;
 
@@ -47,7 +47,7 @@ public class ItemInfoDtoDecimal implements Serializable {
                 ", lowestAsk=" + lowestAsk +
                 ", highestBid=" + highestBid +
                 ", size='" + size + '\'' +
-                ", ItemId=" + ItemId +
+                ", ItemId=" + itemId +
                 ", itemImgUrl='" + itemImgUrl + '\'' +
                 ", name='" + name + '\'' +
                 '}';

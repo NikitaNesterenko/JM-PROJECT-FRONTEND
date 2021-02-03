@@ -24,14 +24,14 @@ import java.util.List;
 @Scope("prototype")
 @Component
 public class TestPurshase extends VerticalLayout {
-    private VerticalLayout headPage = new VerticalLayout();
-    private Div buttonDivItem = new Div();
+    private final VerticalLayout headPage = new VerticalLayout();
+    private final Div buttonDivItem = new Div();
     //private Anchor blogItem = new Anchor();
-    private Div blogItem = new Div();
+    private final Div blogItem = new Div();
     PurchaseFeignRestClient servicePurchase;
 
     public void configurationPage() {
-        final Grid<ItemInfoDtoDecimal> listItem = new Grid<ItemInfoDtoDecimal>(ItemInfoDtoDecimal.class);
+        final Grid<ItemInfoDtoDecimal> listItem = new Grid<>(ItemInfoDtoDecimal.class);
         TextField valueField = new TextField();
         valueField.setValue("ведите id товара");
         List<ItemInfoDtoDecimal> list = servicePurchase.getWeather().getBody();
@@ -64,11 +64,11 @@ public class TestPurshase extends VerticalLayout {
 
     }
 
-    public void configureItemLink(List list) {
+    public void configureItemLink(List<Long> list) {
        // blogItem.add("get ItemInfo");
        // blogItem.setHref("http://localhost:4446/purchase?id=1");
-        for (int i = 0; i < list.size(); i++) {
-            blogItem.add(new RouterLink(" id = " + list.get(i) , PurchasePage.class, list.get(i).toString()));
+        for (Long aLong : list) {
+            blogItem.add(new RouterLink(" id = " + aLong, PurchasePage.class, aLong.toString()));
             blogItem.add("|    |");
         }
        //blogItem.add(new RouterLink("Gei Item", PurchasePage.class, "5"));

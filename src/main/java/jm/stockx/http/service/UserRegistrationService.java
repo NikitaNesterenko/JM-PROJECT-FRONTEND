@@ -11,25 +11,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserRegistrationService {
 
-    private UserRegistrationServiceClient client;
-    private ResponseEntity<?> response;
+    private final UserRegistrationServiceClient client;
 
     @Autowired
     public UserRegistrationService(UserRegistrationServiceClient client) {
         this.client = client;
     }
 
-    public boolean registerUser(UserRegistrationDto userRegistrationDto) {
+    public void registerUser(UserRegistrationDto userRegistrationDto) {
         try {
-            response = client.registrationNewUser(userRegistrationDto);
+            ResponseEntity<?> response = client.registrationNewUser(userRegistrationDto);
             if (response.getStatusCodeValue() == 200){
                 Notification.show("You have been successfully registered");
-                return true;
             }
         } catch (Exception e) {
             Notification.show("Something went wrong");
             e.printStackTrace();
         }
-        return false;
     }
 }
