@@ -9,24 +9,23 @@ import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import jm.stockx.controller.purchase.AllItemController;
 import jm.stockx.controller.user.MainView;
 
 public class HeaderRowNewsPage extends HorizontalLayout {
-    private Div stockXLogoDiv = new Div();
-    private Div blogDiv = new Div();
-    private Div searchDiv = new Div();
-    private Div searchInputDiv = new Div();
-    private Div menuDiv = new Div();
-    private Div hideSearchDiv = new Div();
-    private Div headerActionsDiv = new Div();
-    private Image stockXLogoImg = new Image("news-page-images/StockXLogo.png", "some stockX logo");
-    private Anchor blogTitle = new Anchor();
-    private Anchor blogDescription = new Anchor();
-    private Button searchBtn = new Button();
-    private Button hideSearchBtn = new Button();
-    private Button menuBtn = new Button();
-    private Input searchInput = new Input();
+    private final Div stockXLogoDiv = new Div();
+    private final Div blogDiv = new Div();
+    private final Div searchDiv = new Div();
+    private final Div searchInputDiv = new Div();
+    private final Div menuDiv = new Div();
+    private final Div hideSearchDiv = new Div();
+    private final Div headerActionsDiv = new Div();
+    private final Image stockXLogoImg = new Image("news-page-images/StockXLogo.png", "some stockX logo");
+    private final Anchor blogTitle = new Anchor();
+    private final Anchor blogDescription = new Anchor();
+    private final Button searchBtn = new Button();
+    private final Button hideSearchBtn = new Button();
+    private final Button menuBtn = new Button();
+    private final Input searchInput = new Input();
 
     public HeaderRowNewsPage() {
         initHeaderRowNewsPage();

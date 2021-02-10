@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SalesPageService {
-    @Value("${basic.url}/api/item/allItem")
+    @Value("${basic.url}/rest/api/item/allItem")
     private String basicUrl;
 
 
