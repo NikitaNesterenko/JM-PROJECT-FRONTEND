@@ -11,5 +11,4 @@ public interface AuthRestHttpServiceClient {
 
     @PostMapping(value = "/api/auth/login",  consumes = "application/json")
     UserTokenDto getToken(@RequestBody UserLoginDto userLoginDto);
-
 }
