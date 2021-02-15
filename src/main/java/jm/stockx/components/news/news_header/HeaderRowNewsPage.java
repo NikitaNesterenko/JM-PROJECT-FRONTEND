@@ -1,5 +1,6 @@
 package jm.stockx.components.news.news_header;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
@@ -8,6 +9,8 @@ import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import jm.stockx.controller.purchase.AllItemController;
+import jm.stockx.controller.user.MainView;
 
 public class HeaderRowNewsPage extends HorizontalLayout {
     private Div stockXLogoDiv = new Div();
@@ -30,9 +33,10 @@ public class HeaderRowNewsPage extends HorizontalLayout {
     }
 
     private void configureStockXLogo() {
-        Anchor home = new Anchor("#");
-        home.add(stockXLogoImg);
-        stockXLogoDiv.add(home);
+        Button toListButton = new Button();
+        toListButton.addClickListener(e -> UI.getCurrent().navigate(MainView.class));
+        toListButton.setIcon(stockXLogoImg);
+        stockXLogoDiv.add(toListButton);
     }
 
     // Header buttons classes configuration
@@ -152,7 +156,7 @@ public class HeaderRowNewsPage extends HorizontalLayout {
         configureStockXLogo();
         configureBlogDiv();
         configureHeaderActionsDiv();
-       // clickOnBtnConfiguration();
+        // clickOnBtnConfiguration();
 
         setPadding(false);
         setSpacing(false);
