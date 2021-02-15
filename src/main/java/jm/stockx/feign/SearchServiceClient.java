@@ -11,6 +11,6 @@ import java.util.List;
 public interface SearchServiceClient {
 
     @GetMapping(value = "/api/item/search")
-    List<ItemSearchDto> getItemSearchDtoBySearch(@RequestParam(required = false, name = "s") String search);
+    List<ItemSearchDto> getItemSearchDtoBySearch(@RequestParam(required = false) String search);
 
 }
