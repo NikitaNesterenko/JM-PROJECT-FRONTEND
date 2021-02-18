@@ -14,6 +14,7 @@ import java.util.List;
 
 @Route("search")
 public class Search extends VerticalLayout {
+
     @Autowired
     private SearchService searchService;
 
@@ -40,7 +41,7 @@ public class Search extends VerticalLayout {
         List<ItemSearchDto> searchItems = searchService.getItemSearchDtoBySearch(search);
 
         for (ItemSearchDto item : searchItems) {
-                Button button = new Button(item.getCount() + " result found in " + item.getItemCategoryStr());
+                Button button = new Button(item.getCount() + " result found in " + item.getItemCategory());
                 configureButton(button);
                 buttonLayout.add(button);
         }
@@ -82,6 +83,4 @@ public class Search extends VerticalLayout {
     private void setItemsInResult(List<ItemSearchDto> items) {
 
     }
-
-
 }
