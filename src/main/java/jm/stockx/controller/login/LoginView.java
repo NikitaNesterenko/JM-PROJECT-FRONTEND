@@ -35,10 +35,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     @Value("${cookie.token.name}")
     private String cookieTokenName;
 
-    private final AuthRestGoogleService googleService;
-    private final AuthRestVKService vkService;
     private final LoginForm login;
-    private final AuthRestHttpService auth;
     private final Button googleButton;
     private final Button vkButton;
 
@@ -48,9 +45,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     public LoginView(AuthRestHttpService auth,
                      AuthRestGoogleService googleService,
                      I18NProvider i18NProvider, AuthRestVKService vkService) {
-        this.auth = auth;
-        this.googleService = googleService;
-        this.vkService = vkService;
         login = new LoginForm();
         googleButton = new Button();
         vkButton = new Button();
@@ -98,7 +92,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     }
 
     private void vkAuthButtonOnclick(AuthRestVKService vkService) {
-        vkButton.addClickListener(e -> getUI().get().getPage().setLocation(vkService.getUrl()));
+        vkButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(vkService.getUrl())));
     }
 
     private void selectLanguage(I18NProvider i18NProvider) {
