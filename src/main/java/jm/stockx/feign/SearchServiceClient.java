@@ -3,7 +3,7 @@ package jm.stockx.feign;
 import jm.stockx.dto.ItemSearchDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
 public interface SearchServiceClient {
 
     @GetMapping(value = "/rest/api/item/search?s={search}")
-    List<ItemSearchDto> getItemSearchDtoBySearch(@PathVariable("search") String search);
+    List<ItemSearchDto> getItemSearchDtoBySearch(@RequestParam(required = false) String search);
 
 }

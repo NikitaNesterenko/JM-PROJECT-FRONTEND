@@ -2,6 +2,7 @@ package jm.stockx.http.service;
 
 import jm.stockx.dto.ItemSearchDto;
 import jm.stockx.feign.SearchServiceClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class SearchService {
 
     private final SearchServiceClient client;
 
+    @Autowired
     public SearchService(SearchServiceClient client) {
         this.client = client;
     }

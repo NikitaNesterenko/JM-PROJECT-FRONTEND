@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemSearchDto {
-    private String itemCategoryStr;
+    private String itemCategory;
     private Long count;
 
 }
