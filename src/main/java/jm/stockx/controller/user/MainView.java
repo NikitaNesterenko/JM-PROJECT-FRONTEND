@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Scope;
 @Route()
 @Scope("prototype")
 public class MainView extends VerticalLayout {
+
+
     private HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
 
     public MainView() {
@@ -26,4 +28,6 @@ public class MainView extends VerticalLayout {
         button.setText("Create PayPal Order");
         return button;
     }
+
+
 }
