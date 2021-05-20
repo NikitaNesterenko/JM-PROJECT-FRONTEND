@@ -12,7 +12,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class ItemInfoGetDto {
 
-    private String ItemName;
+    private String itemName;
 
     private String itemImageUrl;
 

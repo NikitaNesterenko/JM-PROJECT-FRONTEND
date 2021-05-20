@@ -17,38 +17,36 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RegistrationForm extends VerticalLayout {
 
-    private final UserRegistrationService userRegistrationService;
 
 
     @Value("${google.oauth2}")
-    private String googleOAuth2 = "/oauth2/authorization/google";
+    private static final String OAUTH_2_AUTHORIZATION_GOOGLE = "/oauth2/authorization/google";
     @Value("${facebook.oauth2}")
-    private String facebookOAuth2 = "/oauth2/authorization/facebook";
+    private static final String OAUTH_2_AUTHORIZATION_FACEBOOK = "/oauth2/authorization/facebook";
     @Value("${apple.oauth2}")
-    private String appleOAuth2 = "/oauth2/authorization/apple";
+    private static final String OAUTH_2_AUTHORIZATION_APPLE = "/oauth2/authorization/apple";
     @Value("${twitter.oauth2}")
-    private String twitterOAuth2 = "/oauth2/authorization/twitter";
+    private static final String OAUTH_2_AUTHORIZATION_TWITTER = "/oauth2/authorization/twitter";
 
-    private Anchor googleLoginButton = new Anchor(googleOAuth2, "Login with Google");
-    private Anchor facebookLoginButton = new Anchor(facebookOAuth2, "Login with Facebook");
-    private Anchor appleLoginButton = new Anchor(appleOAuth2, "Login with Apple");
-    private Anchor twitterLoginButton = new Anchor(twitterOAuth2, "Login with Twitter");
+    private final Anchor googleLoginButton = new Anchor(OAUTH_2_AUTHORIZATION_GOOGLE, "Login with Google");
+    private final Anchor facebookLoginButton = new Anchor(OAUTH_2_AUTHORIZATION_FACEBOOK, "Login with Facebook");
+    private final Anchor appleLoginButton = new Anchor(OAUTH_2_AUTHORIZATION_APPLE, "Login with Apple");
+    private final Anchor twitterLoginButton = new Anchor(OAUTH_2_AUTHORIZATION_TWITTER, "Login with Twitter");
 
-    private Text text = new Text("- or -");
-    private TextField firstName = new TextField();
-    private TextField lastName = new TextField();
-    private EmailField email = new EmailField();
-    private Checkbox checkbox = new Checkbox();
-    private Text text1 = new Text("By signing up, you agree to the");
-    private Anchor terms = new Anchor("https://stockx.com/terms", "Terms of Service");
-    private Text text2 = new Text("and");
-    private Anchor privacyPolicy = new Anchor("https://stockx.com/privacy", "Privacy Policy");
-    private HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
-    private HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
-    private Button signUp = new Button("Sign Up");
+    private final Text text = new Text("- or -");
+    private final TextField firstName = new TextField();
+    private final TextField lastName = new TextField();
+    private final EmailField email = new EmailField();
+    private final Checkbox checkbox = new Checkbox();
+    private final Text text1 = new Text("By signing up, you agree to the");
+    private final Anchor terms = new Anchor("https://stockx.com/terms", "Terms of Service");
+    private final Text text2 = new Text("and");
+    private final Anchor privacyPolicy = new Anchor("https://stockx.com/privacy", "Privacy Policy");
+    private final HorizontalLayout checkboxLayout1 = new HorizontalLayout(checkbox, text1);
+    private final HorizontalLayout checkboxLayout2 = new HorizontalLayout(terms, text2, privacyPolicy);
+    private final Button signUp = new Button("Sign Up");
 
     public RegistrationForm(UserRegistrationService userRegistrationService) {
-        this.userRegistrationService = userRegistrationService;
         googleLoginButton.addClassName("googleLoginButton");
         facebookLoginButton.addClassName("facebookLoginButton");
         appleLoginButton.addClassName("appleLoginButton");

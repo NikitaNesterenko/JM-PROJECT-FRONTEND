@@ -1,7 +1,10 @@
 package jm.stockx.controller.purchase;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.*;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.OptionalParameter;
+import com.vaadin.flow.router.Route;
 import jm.stockx.components.purchase.InfoProductPage;
 import jm.stockx.controller.MainLayout;
 import jm.stockx.dto.ItemInfoDtoDecimal;
@@ -17,29 +20,21 @@ public class PurchasePage extends VerticalLayout implements HasUrlParameter<Stri
 
 
     private final PurchaseFeignRestClient servicePurchase;
-    private InfoProductPage productPageInfo;
-    private ItemInfoDtoDecimal itemInfoDtoDecimal;
-    private Long par;
 
     @Override
     public void setParameter(BeforeEvent event,
                              @OptionalParameter String parameter) {
 
-        Location location = event.getLocation();
-        QueryParameters queryParameters = location
-                .getQueryParameters();
 
-//        Map<String, List<String>> parametersMap =
-//                queryParameters.getParameters();
-        par = Long.valueOf(parameter);
-        itemInfoDtoDecimal = servicePurchase.getItemInfoDtoDec(par).getBody();
-        productPageInfo = new InfoProductPage(itemInfoDtoDecimal);
+        Long par = Long.valueOf(parameter);
+        ItemInfoDtoDecimal itemInfoDtoDecimal = servicePurchase.getItemInfoDtoDec(par).getBody();
+        InfoProductPage productPageInfo = new InfoProductPage(itemInfoDtoDecimal);
         add(productPageInfo);
     }
 
 
     @Autowired
-    public PurchasePage(InfoProductPage productPage, PurchaseFeignRestClient servicePurchase) {
+    public PurchasePage(PurchaseFeignRestClient servicePurchase) {
         this.servicePurchase = servicePurchase;
     }
 

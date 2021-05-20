@@ -35,14 +35,9 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     @Value("${cookie.token.name}")
     private String cookieTokenName;
 
-    private final AuthRestGoogleService googleService;
-    private final AuthRestVKService vkService;
     private final LoginForm login;
-    private final AuthRestHttpService auth;
     private final Button googleButton;
     private final Button vkButton;
-
-    private HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
 
     private final H1 vaad = new H1("");
     private final Select<Locale> languageSelect;
@@ -50,14 +45,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     public LoginView(AuthRestHttpService auth,
                      AuthRestGoogleService googleService,
                      I18NProvider i18NProvider, AuthRestVKService vkService) {
-        this.auth = auth;
-        this.googleService = googleService;
-        this.vkService = vkService;
         login = new LoginForm();
         googleButton = new Button();
         vkButton = new Button();
         languageSelect = new Select<>();
 
+        HeaderRowNewsPage navPanel = new HeaderRowNewsPage();
         add(navPanel);
         setPageProperties();
         selectLanguage(i18NProvider);
@@ -83,7 +76,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
             VaadinService.getCurrentResponse().addCookie(new Cookie(cookieTokenName, token));
             choosePathFromRoleName(auth);
         } else {
-            getUI().get().getPage().setLocation("/login");
+            getUI().ifPresent(ui -> ui.navigate("/login"));
         }
     }
 
@@ -95,11 +88,11 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     }
 
     private void googleAuthButtonOnclick(AuthRestGoogleService googleService) {
-        googleButton.addClickListener(e -> getUI().get().getPage().setLocation(googleService.getUrl()));
+        googleButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(googleService.getUrl())));
     }
 
     private void vkAuthButtonOnclick(AuthRestVKService vkService) {
-        vkButton.addClickListener(e -> getUI().get().getPage().setLocation(vkService.getUrl()));
+        vkButton.addClickListener(e -> getUI().ifPresent(ui -> ui.navigate(vkService.getUrl())));
     }
 
     private void selectLanguage(I18NProvider i18NProvider) {
@@ -115,7 +108,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver, Lo
     }
 
     private void saveLocalePreference(Locale locale) {
-        getUI().get().setLocale(locale);
+        getUI().ifPresent(ui -> ui.navigate(locale.toString()));
         VaadinService.getCurrentResponse().addCookie(new Cookie("locale", locale.toLanguageTag()));
     }
 

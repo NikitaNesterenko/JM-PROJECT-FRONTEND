@@ -14,7 +14,4 @@ public class CurrencyPostDto {
     @NotBlank
     private String name;
 
-//    public CurrencyPostDto(Currency currency) {
-//        this.name = currency.getName();
-//    }
 }

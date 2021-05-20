@@ -1,28 +1,26 @@
 package jm.stockx.http.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jm.stockx.feign.AuthRestGoogleServiceClient;
-import org.apache.http.util.EntityUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class AuthRestGoogleService {
 
     private final AuthRestGoogleServiceClient authRestGoogleServiceClient;
-    private final ObjectMapper mapper;
 
     @Autowired
-    public AuthRestGoogleService(AuthRestGoogleServiceClient authRestGoogleServiceClient, ObjectMapper mapper) {
+    public AuthRestGoogleService(AuthRestGoogleServiceClient authRestGoogleServiceClient) {
         this.authRestGoogleServiceClient = authRestGoogleServiceClient;
-        this.mapper = mapper;
     }
 
     public String getUrl() {
         try {
             return authRestGoogleServiceClient.getUrl();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.info(e.getMessage());
             return null;
         }
     }

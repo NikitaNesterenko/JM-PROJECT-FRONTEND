@@ -28,8 +28,6 @@ public class PayPalCreateOrderView extends Div {
 
     private void getApprovalURL(PayPalOrderDto generateOrder) {
         String approvalURL = payPalOrderService.getApprovalURL(generateOrder);
-        if (getUI().isPresent()) {
-            getUI().get().getPage().setLocation(approvalURL);
-        }
+            getUI().ifPresent(ui -> ui.navigate(approvalURL));
     }
 }
